@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/23-07-2018.iml" filepath="$PROJECT_DIR$/.idea/23-07-2018.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parsing-through-extractor/.idea/modules/parsing-through-extractor.iml" filepath="$PROJECT_DIR$/parsing-through-extractor/.idea/modules/parsing-through-extractor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parsing-through-extractor/.idea/modules/parsing-through-extractor-build.iml" filepath="$PROJECT_DIR$/parsing-through-extractor/.idea/modules/parsing-through-extractor-build.iml" />
+    </modules>
+  </component>
+</project>

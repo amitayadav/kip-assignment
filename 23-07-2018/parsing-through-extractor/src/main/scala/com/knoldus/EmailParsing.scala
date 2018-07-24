@@ -11,7 +11,7 @@ object EMail {
     if (parts.length == 2) Some(parts(0), parts(1)) else None
   }
 }
-//dfds
+
 class EmailParsing{
 
   def emailParsing(email:String):Option[String]= {
@@ -28,13 +28,12 @@ class EmailParsing{
  }
 }
 
-/*object EmailParsing extends App{
+object EmailParsing extends App{
 
     val parsing = new EmailParsing
     println(parsing.emailParsing("knol@knoldus.in"))
     println(parsing.emailParsing("knolknoldus.in"))
-}*/
-
+}
 
 
 
