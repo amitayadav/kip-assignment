@@ -8,7 +8,7 @@ class MedicalItemSpec extends FunSuite {
 
   test("generate bill for medical item") {
     val actualResult = testMedicalItem.getBill(Map("disprin" -> 2, "D-cold total" -> 3, "crocin" -> 5), Map("disprin" -> 10, "D-cold total" -> 15, "crocin" -> 5))
-    val expectedResult = 300
+    val expectedResult = 90
     assert(actualResult === expectedResult)
   }
 
