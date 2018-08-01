@@ -1,3 +1,4 @@
+
 package ttt.entites
 
 import akka.actor.{Actor, ActorRef}
@@ -24,6 +25,7 @@ class Game extends Actor with TicTacToeLogic {
   var map = Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
 
   override def receive: Receive = {
+
     case PlayStep(index, player) =>
 
       if (index - 1 >= 0 && index - 1 < 10) {
@@ -32,12 +34,12 @@ class Game extends Actor with TicTacToeLogic {
           map(index - 1) = player
 
           if (isGameOver(map)) {
-            println("player "+player+"you won ")
+            println("player " + player + "you won ")
 
             sender() ! GameOver
           }
 
-          else{
+          else {
 
             sender() ! TicTacToeMap(map)
           }
