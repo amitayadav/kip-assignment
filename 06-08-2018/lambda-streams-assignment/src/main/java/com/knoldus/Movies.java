@@ -7,9 +7,9 @@ public class Movies {
     private double rating;
     private String genre;
 
-    public Movies(String name,int releaseYear,double rating,String genre)
+    public Movies(String movieName,int releaseYear,double rating,String genre)
     {
-        this.movieName=name;
+        this.movieName=movieName;
         this.releaseYear=releaseYear;
         this.rating=rating;
         this.genre=genre;

@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
 public class PrimeNumber {
 
     public static boolean isPrime(int number) {
-        return IntStream.rangeClosed(2, number / 2).noneMatch(i -> number % i == 0);
+        return !IntStream.rangeClosed(2, number / 2).anyMatch(i -> number % i == 0);
     }
 
     public static void main(String[] arr) {
@@ -20,7 +20,7 @@ public class PrimeNumber {
                 .toArray()).boxed().collect(Collectors.toList());
 
         System.out.println(numberList.stream()
-                .filter(PrimeNumber::isPrime)
+                .filter( PrimeNumber::isPrime)
                 .collect(Collectors.toList()));
     }
 }

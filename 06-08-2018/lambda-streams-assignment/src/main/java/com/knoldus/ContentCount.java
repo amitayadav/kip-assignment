@@ -18,7 +18,7 @@ public class ContentCount {
             text += contents;
         }
 
-        Map<String, Long> wordFrequency = Stream.of(text.toLowerCase().split("\\W+"))
+        Map<String, Long> wordFrequency = Stream.of(text.toLowerCase().split(" "))
                 .collect(Collectors.groupingBy(String::toString, Collectors.counting()));
 
         System.out.println(wordFrequency);

@@ -9,9 +9,9 @@ import java.util.stream.Stream;
 
 public class WordCount {
 
-    public static Map<String,Long> countFrequency(String text){
+    public static Map<String,Long> frequencyCount(String text){
 
-        Map<String, Long> wordFrequency =Stream.of(text.toLowerCase().split("\\W+"))
+        Map<String, Long> wordFrequency =Stream.of(text.toLowerCase().split(" "))
                 .collect(Collectors.groupingBy(String::toString, Collectors.counting()));
 
         return wordFrequency;
@@ -23,12 +23,10 @@ public class WordCount {
         System.out.println("Enter the String");
         String text=scanner.nextLine();
 
-
-        Map <String,Long> wordCount=WordCount.countFrequency(text);
-
-        System.out.println( wordCount.keySet().stream()
-                .map(key -> Arrays.asList(key,wordCount.get(key)))
-                .collect(Collectors.toList()));
+         WordCount.frequencyCount(text).keySet().stream()
+                .map(key -> Arrays.asList(key,WordCount.frequencyCount(text).get(key)))
+                .collect(Collectors.toList())
+                 .forEach(System.out::println);
 
     }
 

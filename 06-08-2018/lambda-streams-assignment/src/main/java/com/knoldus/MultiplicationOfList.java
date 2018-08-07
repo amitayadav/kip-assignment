@@ -6,13 +6,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static java.lang.Math.min;
+
 public class MultiplicationOfList {
 
 
     private static List<Integer> multiply(List<Integer> firstList, List<Integer> secondList) {
 
-        int sizeOfShorterList = Math.min(firstList.size(), secondList.size());
-        return IntStream.range(0, sizeOfShorterList)
+       return IntStream.range(0, min(firstList.size(), secondList.size()))
                 .boxed()
                 .map(index -> firstList.get(index) * secondList.get(index))
                 .collect(Collectors.toList());
