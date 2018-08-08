@@ -8,7 +8,9 @@
     <artifactId>date-time-api-assignment</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jacoco.execs.directory>${project.basedir}/target/jacoco</jacoco.execs.directory>
         <jacoco.ut.exec>${jacoco.execs.directory}/jacoco.exec</jacoco.ut.exec>
         <jacoco.it.exec>${jacoco.execs.directory}/jacoco-it.exec</jacoco.it.exec>
@@ -114,7 +116,8 @@
                 <artifactId>maven-pmd-plugin</artifactId>
                 <version>${maven.pmd.plugin.version}</version>
                 <configuration>
-                    <failOnViolation>true</failOnViolation> <!-- this is actually true by default, but can be disabled -->
+                    <failOnViolation>true
+                    </failOnViolation> <!-- this is actually true by default, but can be disabled -->
                     <printFailingErrors>true</printFailingErrors>
                     <linkXRef>false</linkXRef>
                 </configuration>
@@ -317,6 +320,5 @@
         </plugins>
     </build>
 
-
-
 </project>
+

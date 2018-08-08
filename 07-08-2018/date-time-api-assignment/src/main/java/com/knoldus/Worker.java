@@ -1,5 +1,8 @@
 package com.knoldus;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Worker {
@@ -20,9 +23,31 @@ public class Worker {
                 new DayOfWeek().getDayOfWeekList();
                 break;
             case 4:
-                new ZonedCurrentTime().getZoneCurrentTime();
+                new ZonedCurrentTime().getZoneCurrentTime("UTC");
                 break;
             case 5:
+
+               Student student1 = new Student("Amita",1, Optional.of(Arrays.asList("English","hindi")));
+               Student student2 = new Student("Pratima",2, Optional.empty());
+
+               Optional<List<Student>> studentList=Optional.of(Arrays.asList(student1,student2));
+
+               ClassRoom classRoom1= new ClassRoom(302,studentList);
+               ClassRoom classRoom2= new ClassRoom(303,Optional.empty());
+
+               List<ClassRoom> classRoomList=Arrays.asList(classRoom1,classRoom2);
+
+
+
+                StudentAnalysis testStudent= new StudentAnalysis();
+
+                System.out.println(testStudent.getStudentListWithRoomHaveNoSubjects(classRoomList));
+                System.out.println(testStudent.getSubjectsOfStudentsWithGivenRoomId(classRoomList,302));
+                testStudent.giveMsgIfRoomHasStudents(classRoomList,303);
+                testStudent.giveMsgIfRoomHasStudents(classRoomList,302);
+
+
+                break;
 
             default:
                 System.out.println("Invalid Choice");
