@@ -1,14 +1,12 @@
 
-$('#registration').submit(function(e) {
-    e.preventDefault();
-   
+$('button').submit(function() {
+      
     var email = $('#email').val();
     var confirm_Email = $('#confirmEmail').val();
     var phone_No = $('#phoneNo').val();
 
     $(".error").remove();
 
-    
     if (email.length > 1) {
       var regEx = /^[A-Z0-9][A-Z0-9._%+-]{0,63}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/;
       var validEmail = regEx.test(email);
@@ -31,6 +29,33 @@ $('#registration').submit(function(e) {
         $('#phoneNo').after('<span clas="error> Enter a valid phoneNo</span>');
       }
     }
-  });
+  
+  $.ajax({
 
+  url : "https://reqres.in/api/users/10",
+  async: false,
+
+  dataType: 'json',
+
+  beforeSend:function(){
+
+    document.write("loading...")
+  },
+
+  type: "GET",
+
+  success: function(data){
+
+
+    document.write(data[0][0].description)
+
+
+  },
+
+  error: function(er){
+    console.log(er);
+
+  }
+    });
 });
+
