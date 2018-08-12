@@ -1,41 +1,28 @@
+.navbar-brand>img {
+   max-height: 100%;
+   height: 100%;
+   width: auto;
+   margin: 0 auto;
+
+
+   /* probably not needed anymore, but doesn't hurt */
+   -o-object-fit: contain;
+   object-fit: contain; 
+
+}
+nav li a:hover {
+  color: blue;
+}
+
 .row{
-  margin-top: 30px;
+  margin-top: 20px;
 }
-
-.banner-image-container{
-
-  position:relative;
-  width:100%;
-}
-
-.banner-container-overlay{
-  width: 100%;
-    position: relative;
-    background: url('/images/banner.jpeg') no-repeat center;
-        background-size: auto auto;
-    background-size: cover;
-    padding: 150px 20px 170px;
-
-}
-
-.light-blue-line{
-  width:120px;
-  border-top: 6px solid #02eefd;
-  margin:0 auto;
-
-}
-
-.space-sep20{
-  clear: both;
-  display:block;
-  height:20px;
-
-}
-
-.banner-overlay-heading-container{
-  text-align: center;
-
-
+.full{
+  position: absolute;
+    top: 0%;
+    left: 0%;
+    transform: translate(-0%, -0%);
+    background: blue;
 }
 .centered {
     position: absolute;
@@ -45,21 +32,18 @@
     color: white;
 }
 
-img {
-    opacity: 0.8;
-    filter: alpha(opacity=50);
+.img2 {
+    
+    width: auto;
+    height: auto;
   }
-img:hover {
-    opacity: 1.0;
-    filter: alpha(opacity=100);
-}
 
 .offices-img{
   margin: 20px;
 }
 
-footer {
-      background-color: grey;
-      display:block;
-      padding: 25px;
-    }
+.foot{
+  background: gray;
+  color: white;
+  width: 50px;
+}
