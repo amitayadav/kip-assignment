@@ -21,7 +21,6 @@ public class Movie {
     }
 
     public void setId(Long id) {
-        if(getId() != id)
         this.id = id;
     }
 
@@ -74,8 +73,8 @@ public class Movie {
     }
 
 
-    public Movie(Long id, String movieName, String releaseDate, String releaseYear, Integer rating, String actor, String director) {
-        this.id = id;
+    public Movie(int id, String movieName, String releaseDate, String releaseYear, Integer rating, String actor, String director) {
+        this.id = new Long(id);
         this.movieName = movieName;
         this.releaseDate = releaseDate;
         this.releaseYear = releaseYear;
