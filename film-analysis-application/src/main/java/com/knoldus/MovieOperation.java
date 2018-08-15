@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -18,15 +19,15 @@ public class MovieOperation {
     }
 
     public CompletableFuture<List<Movie>> addMovie(Movie movie) {
-        CompletableFuture<Movie> isPresent = getMovie(movie.getId());
+        CompletableFuture<Movie> isExists = getMovie(movie.getId());
 
         this.movieList = movieList.thenCompose(list -> {
-            isPresent.thenApply(movieInList -> {
+            isExists.thenApply(movieInList -> {
                 if (movieInList == null) {
                     list.add(movie);
                     return list;
                 } else {
-                    throw new RuntimeException("Movie with same id exists.");
+                    throw new RuntimeException("This movie already exists.");
                 }
             });
             return movieList;
@@ -36,25 +37,20 @@ public class MovieOperation {
     }
 
     public CompletableFuture<Movie> getMovie(Long movieId) {
+
         return movieList.thenApply((list) -> {
             Movie requiredMovie = list.stream()
                     .filter(movie -> movieId.equals(movie.getId()))
                     .findAny()
                     .orElse(null);
-            if (requiredMovie == null)
-                try {
-                    throw new MovieNotFind("movie not find");
-                } catch (MovieNotFind movieNotFind) {
-                    movieNotFind.printStackTrace();
-                }
+            if(requiredMovie == null)
+                throw new MovieNotFind("Movie Not found");
             else
                 return requiredMovie;
         }).exceptionally(ex -> {
             System.out.println(ex.getMessage());
             return null;
         });
-
-
     }
 
     public CompletableFuture<List<Movie>> deleteMovie(Long movieId) {
@@ -75,14 +71,25 @@ public class MovieOperation {
     }
 
 
-    public CompletableFuture<List<Movie>> updateMovie(int id, String name, String releaseDate, String releaseYear, Integer rating, String actor, String director) {
+    public CompletableFuture<List<Movie>> updateMovie(Long id, String name, String releaseDate, String releaseYear, Integer rating, String actor, String director) {
 
-        Long movieId = new Long(id);
-        CompletableFuture<Movie> isPresent = getMovie(movieId);
-        Movie updatedMovie = new Movie(id, name, releaseDate, releaseYear, rating, actor, director);
-        this.movieList = deleteMovie(movieId);
-        this.movieList = addMovie(updatedMovie);
-        return this.movieList;
+       Movie updatedMovie = new Movie(id, name, releaseDate, releaseYear, rating, actor, director);
+        CompletableFuture<Movie> isExists = getMovie(id);
+
+        this.movieList = movieList.thenCompose(list -> {
+            isExists.thenApply(movieInList -> {
+                if (movieInList != null) {
+                    list.remove(list.indexOf(id));
+                    this.movieList = addMovie(updatedMovie);
+                    return this.movieList;
+                } else {
+                    throw new RuntimeException("This movie doesn't exists.");
+                }
+            });
+            return movieList;
+        });
+        return movieList;
+
     }
 
 
@@ -91,7 +98,7 @@ public class MovieOperation {
 
     }
 
-    public CompletableFuture<List<Movie>> getMovies(int offset, int limit) {
+    public CompletableFuture<List<Movie>> getMoviesWithLimit(int offset, int limit) {
         return movieList.thenApply((list) -> {
             int actualLimit;
             if (offset > list.size() - 1)
@@ -111,23 +118,21 @@ public class MovieOperation {
         });
     }
 
-    public CompletableFuture<List<Movie>> filterMovie(Integer rating, String director) {
-        return movieList.thenApply((list) -> {
+    public CompletableFuture<List<Movie>> filterMovieWithDirector(String director) {
+
+        return movieList.thenApply((List<Movie> list) -> {
             List<Movie> moviesWithHigherRating = list.stream()
                     .filter(movie -> movie.getRating() > 8 && director.equals(movie.getDirector()))
                     .collect(Collectors.toList());
-            if (moviesWithHigherRating.size() == 0)
-                try {
-                    throw new MovieNotFind("movie not find");
-                } catch (MovieNotFind movieNotFind) {
-                    movieNotFind.printStackTrace();
-                }
-            else
+            if(moviesWithHigherRating.size() == 0) {
+                throw new MovieNotFind("Required Movies not found");
+            } else
                 return moviesWithHigherRating;
         }).exceptionally(ex -> {
             System.out.println(ex.getMessage());
             return null;
         });
+
 
     }
 
@@ -138,26 +143,33 @@ public class MovieOperation {
         });
     }
 
-    private LocalDate parseDate(String date) {
+
+
+    private LocalDate parseDate(String date){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return LocalDate.parse(date, formatter);
     }
 
-    public CompletableFuture<List<Movie>> filterMovie(String date) {
+    public CompletableFuture<List<Movie>> getMoviesAfterGivenDate(String date){
         LocalDate formattedDate = parseDate(date);
 
         return movieList.thenApply((list) -> {
+
             List<Movie> moviesReleasedAfterDate = list.stream()
                     .filter(movie -> parseDate(movie.getReleaseDate()).isAfter(formattedDate))
                     .collect(Collectors.toList());
-            if (moviesReleasedAfterDate.size() == 0)
-                try {
-                    throw new MovieNotFind("movie not find");
-                } catch (MovieNotFind movieNotFind) {
+
+            if(moviesReleasedAfterDate.size() == 0)
+            //{
+
+                    throw new MovieNotFind("Required Movies not found");
+                /*catch (MovieNotFind movieNotFind) {
                     movieNotFind.printStackTrace();
                 }
-            else
+            } */
+                else
                 return moviesReleasedAfterDate;
+
         }).exceptionally(ex -> {
             System.out.println(ex.getMessage());
             return null;
@@ -174,11 +186,11 @@ public class MovieOperation {
                             Integer.valueOf(movie.getReleaseYear()) < endYearInt)
                     .collect(Collectors.toList());
             if (moviesInBetweenYears.size() == 0)
-                try {
+               // try {
                     throw new MovieNotFind("movie not find");
-                } catch (MovieNotFind movieNotFind) {
-                    movieNotFind.printStackTrace();
-                }
+               // } catch (MovieNotFind movieNotFind) {
+                 //   movieNotFind.printStackTrace();
+                //}
             else
                 return moviesInBetweenYears;
         }).exceptionally(ex -> {
@@ -197,11 +209,11 @@ public class MovieOperation {
                             formattedEndDate.isAfter(parseDate(movie.getReleaseDate())))
                     .collect(Collectors.toList());
             if (moviesInBetweenDate.size() == 0)
-                try {
+                //try {
                     throw new MovieNotFind("movie not find");
-                } catch (MovieNotFind movieNotFind) {
-                    movieNotFind.printStackTrace();
-                }
+                //} catch (MovieNotFind movieNotFind) {
+                  //  movieNotFind.printStackTrace();
+                //}
             else
                 return moviesInBetweenDate;
         }).exceptionally(ex -> {

@@ -1,9 +1,9 @@
 
 package com.knoldus;
 
-class MovieNotFind extends Exception{
+class MovieNotFind extends RuntimeException{
 
-    public MovieNotFind(String message){
+     MovieNotFind(String message){
         super(message);
     }
 

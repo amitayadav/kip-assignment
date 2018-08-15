@@ -20,9 +20,6 @@ public class Movie {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getMovieName() {
         return movieName;
@@ -73,7 +70,7 @@ public class Movie {
     }
 
 
-    public Movie(int id, String movieName, String releaseDate, String releaseYear, Integer rating, String actor, String director) {
+    public Movie(Long id, String movieName, String releaseDate, String releaseYear, Integer rating, String actor, String director) {
         this.id = new Long(id);
         this.movieName = movieName;
         this.releaseDate = releaseDate;
