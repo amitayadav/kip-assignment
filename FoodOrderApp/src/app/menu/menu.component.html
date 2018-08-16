@@ -1,0 +1,43 @@
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<br><br><br>
+<div class="container">
+  <div class="row" >
+    <div class="col-md-3 " align="center">
+      <div class="panel panel-default">
+        <div class="panel-heading"><strong>Category</strong></div>
+        <div class="panel-body">
+          <div *ngFor="let name of alldata | mypipe:'category'">
+            <p>{{name.key}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6  panel panel-default" align="center">
+
+      <div *ngFor="let name of alldata | mypipe:'category'">
+        <div class="panel panel-default">
+          <div class="panel-heading"><strong>{{name.key}}</strong></div>
+          <div class="panel-body">
+            <div *ngFor="let item of name.value">
+              <p>{{item.name}} <span class="glyphicon glyphicon-plus" style="margin: 5px" (click)="addItem(item.name,item.price,1)"></span> <span style="margin: 5px" class="glyphicon glyphicon-minus" (click)="subItem(item.name,item.price,1)"></span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="panel panel-default">
+        <div class="panel-heading"><strong>Cart</strong></div>
+        <div class="panel-body">
+          <div *ngFor ="let name of cart">
+            <span><strong>{{name.item}}</strong></span>&nbsp;
+            <span><strong>{{name.price}}</strong></span>&nbsp;
+            <span><strong>{{name.quantity}}</strong></span>
+          </div>
+        </div>
+        <div class="panel-footer">Total Amount = {{totalamount}}</div>
+      </div>
+    </div>
+  </div>
+</div>
