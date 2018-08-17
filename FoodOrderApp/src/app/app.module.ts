@@ -1,12 +1,12 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { MenuComponent } from './menu/menu.component';
+import {AppComponent} from './app.component';
+import {MenuComponent} from './menu/menu.component';
 
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
-import { CustompipePipe } from './menu/custompipe.pipe';
+import {CustompipePipe} from './menu/custompipe.pipe';
 
 @NgModule({
   declarations: [
@@ -22,4 +22,5 @@ import { CustompipePipe } from './menu/custompipe.pipe';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
