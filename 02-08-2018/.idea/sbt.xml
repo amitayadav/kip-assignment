@@ -2,5 +2,19 @@
 <project version="4">
   <component name="ScalaSbtSettings">
     <option name="customVMPath" />
+    <option name="linkedExternalProjectsSettings">
+      <SbtProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/twitter-streaming" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/twitter-streaming" />
+            <option value="$PROJECT_DIR$/twitter-streaming/project" />
+          </set>
+        </option>
+        <option name="sbtVersion" value="1.2.0" />
+        <option name="useAutoImport" value="true" />
+        <option name="useOurOwnAutoImport" value="true" />
+      </SbtProjectSettings>
+    </option>
   </component>
 </project>

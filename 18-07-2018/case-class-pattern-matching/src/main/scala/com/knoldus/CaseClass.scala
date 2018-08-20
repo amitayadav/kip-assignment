@@ -15,16 +15,16 @@ object ScoreCard{
 class ExamResult {
 
 
-  def findFirstThreeToppers(list1: List[Student], list2: List[ScoreCard]): List[Any] = {
+  /*def findFirstThreeToppers(list1: List[Student], list2: List[ScoreCard]): List[Any] = {
 
       val topperList = list2.sortWith(_.totalMarks > _.totalMarks)
 
-      val toppeName= topperList match {
+      /*val toppeName= topperList match {
         case x :: xs :: t :: rest => x
         case _ => "Default case"
-      }
+      }*/
 
-      /*val topperName = topperList.map {
+      val topperName = topperList.map {
         sid => list1.filter(_.id == sid).head
       }
       topperName.map { e =>
@@ -32,8 +32,8 @@ class ExamResult {
       }
     }
     else
-      throw new IllegalArgumentException*/
-  }
+      throw new IllegalArgumentException
+  }*/
 
   def findSubjectTopper(subject :String , list1: List[Student], list2: List[ScoreCard]): (Int, String, Float, Float, Float, Float) = {
 

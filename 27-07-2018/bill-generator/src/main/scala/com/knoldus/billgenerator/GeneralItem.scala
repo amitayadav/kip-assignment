@@ -12,7 +12,7 @@ class GeneralItem extends Item {
       item1<-mapOfitems;
       item2<-priceOfItems
       if(item1._1==item2._1)
-    )yield item1._2 * item2._2*1.025
+    )yield (item1._2*item2._2) + (item1._2 * item2._2*VAT)
    /* val BillForGeneralItem = mapOfitems.map { ele =>
       priceOfItems.map { result => (result._2 * ele._2) + (result._2 * ele._2 * VAT)
       }

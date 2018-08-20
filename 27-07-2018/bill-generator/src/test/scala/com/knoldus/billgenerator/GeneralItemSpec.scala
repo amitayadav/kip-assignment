@@ -11,7 +11,7 @@ class GeneralItemSpec extends FunSuite {
 
   test("generate bill for general item") {
     val actualResult = testGeneralItem.getBill(Map("apple" -> 2, "surfexcel" -> 1, "chocolate" -> 5), Map("apple" -> 200, "surfexcel" -> 58, "chocolate" -> 25))
-    val expectedResult = 597.5749999999999
+    val expectedResult = 597.575
     assert(actualResult === expectedResult)
   }
 }

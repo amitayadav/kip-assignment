@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/admin.iml" filepath="$PROJECT_DIR$/.idea/modules/admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/admin-build.iml" filepath="$PROJECT_DIR$/.idea/modules/admin-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dao.iml" filepath="$PROJECT_DIR$/.idea/modules/dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dao-build.iml" filepath="$PROJECT_DIR$/.idea/modules/dao-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/employee.iml" filepath="$PROJECT_DIR$/.idea/modules/employee.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/employee-build.iml" filepath="$PROJECT_DIR$/.idea/modules/employee-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/meeting-room-schedular.iml" filepath="$PROJECT_DIR$/.idea/modules/meeting-room-schedular.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/meeting-room-schedular-build.iml" filepath="$PROJECT_DIR$/.idea/modules/meeting-room-schedular-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/room.iml" filepath="$PROJECT_DIR$/.idea/modules/room.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/room-build.iml" filepath="$PROJECT_DIR$/.idea/modules/room-build.iml" />
+    </modules>
+  </component>
+</project>

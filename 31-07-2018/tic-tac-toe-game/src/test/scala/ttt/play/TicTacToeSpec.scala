@@ -1,14 +1,15 @@
 
 import akka.actor.{ActorSystem, Props}
-import akka.testkit.{ImplicitSender, TestKit}
+import akka.testkit.{DefaultTimeout, ImplicitSender, TestKit}
 import org.scalatest.{BeforeAndAfterAll, Matchers, WordSpecLike}
 import ttt.entites._
+import scala.concurrent.duration._
 
-class TicTacToeSpec() extends TestKit(ActorSystem("MySpec")) with ImplicitSender
+class TicTacToeSpec() extends TestKit(ActorSystem("MySpec")) with DefaultTimeout with ImplicitSender
   with WordSpecLike with Matchers with BeforeAndAfterAll {
 
 
-  val gameRef = system.actorOf(Props[Game])
+
 
   override def afterAll {
     TestKit.shutdownActorSystem(system)
@@ -16,6 +17,15 @@ class TicTacToeSpec() extends TestKit(ActorSystem("MySpec")) with ImplicitSender
 
   "An Game actor" should {
 
+    val gameRef = system.actorOf(Props[Game])
+
+    /*"be able to identify valid index" in {
+      within(3000 millis) {
+        gameRef ! PlayStep(10, 1)
+        expectMsg("invalid index")
+      }
+    }
+*/
     "be able to change and return the state of tic tac toe game" in {
       gameRef ! PlayStep(1, 1)
       expectMsgAllClassOf(classOf[TicTacToeMap])

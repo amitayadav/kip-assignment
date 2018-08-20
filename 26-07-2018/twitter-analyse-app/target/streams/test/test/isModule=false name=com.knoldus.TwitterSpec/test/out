@@ -1,0 +1,66 @@
+[0m[[0m[0minfo[0m] [0m[0m[32mTwitterSpec:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mTwitter class[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should fetch the tweets *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  twitter4j.TwitterException: 401:Authentication credentials (https://dev.twitter.com/pages/auth) were missing or incorrect. Ensure that you have set valid consumer key/secret, access token/secret, and the system clock is in sync.[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31mmessage - Could not authenticate you.[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31mcode - 32[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at twitter4j.HttpClientImpl.handleRequest(HttpClientImpl.java:164)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at twitter4j.HttpClientBase.request(HttpClientBase.java:57)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at twitter4j.HttpClientBase.get(HttpClientBase.java:75)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at twitter4j.TwitterImpl.get(TwitterImpl.java:1786)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at twitter4j.TwitterImpl.search(TwitterImpl.java:268)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at com.knoldus.Twitter.retrieveTweet(Twitter.scala:29)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at com.knoldus.Twitter.$anonfun$getNumberOfTweets$1(Twitter.scala:35)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.runtime.java8.JFunction0$mcI$sp.apply(JFunction0$mcI$sp.java:12)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.concurrent.Future$.$anonfun$apply$1(Future.scala:654)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.util.Success.$anonfun$map$1(Try.scala:251)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  ...[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should fetch the average number of tweets corresponding to input *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  twitter4j.TwitterException: 401:Authentication credentials (https://dev.twitter.com/pages/auth) were missing or incorrect. Ensure that you have set valid consumer key/secret, access token/secret, and the system clock is in sync.[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31mmessage - Could not authenticate you.[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31mcode - 32[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at twitter4j.HttpClientImpl.handleRequest(HttpClientImpl.java:164)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at twitter4j.HttpClientBase.request(HttpClientBase.java:57)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at twitter4j.HttpClientBase.get(HttpClientBase.java:75)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at twitter4j.TwitterImpl.get(TwitterImpl.java:1786)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at twitter4j.TwitterImpl.search(TwitterImpl.java:268)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at com.knoldus.Twitter.retrieveTweet(Twitter.scala:29)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at com.knoldus.Twitter.$anonfun$getNumberOfTweets$1(Twitter.scala:35)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.runtime.java8.JFunction0$mcI$sp.apply(JFunction0$mcI$sp.java:12)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.concurrent.Future$.$anonfun$apply$1(Future.scala:654)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.util.Success.$anonfun$map$1(Try.scala:251)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  ...[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should fetch the average number of likes per tweet corresponding to input *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  twitter4j.TwitterException: 401:Authentication credentials (https://dev.twitter.com/pages/auth) were missing or incorrect. Ensure that you have set valid consumer key/secret, access token/secret, and the system clock is in sync.[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31mmessage - Could not authenticate you.[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31mcode - 32[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at twitter4j.HttpClientImpl.handleRequest(HttpClientImpl.java:164)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at twitter4j.HttpClientBase.request(HttpClientBase.java:57)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at twitter4j.HttpClientBase.get(HttpClientBase.java:75)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at twitter4j.TwitterImpl.get(TwitterImpl.java:1786)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at twitter4j.TwitterImpl.search(TwitterImpl.java:268)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at com.knoldus.Twitter.retrieveTweet(Twitter.scala:29)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at com.knoldus.Twitter.$anonfun$getAverageLikes$1(Twitter.scala:44)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.runtime.java8.JFunction0$mcI$sp.apply(JFunction0$mcI$sp.java:12)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.concurrent.Future$.$anonfun$apply$1(Future.scala:654)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.util.Success.$anonfun$map$1(Try.scala:251)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  ...[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should give exception when there exists no tweet for the input string *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  Expected exception java.lang.ArithmeticException to be thrown, but twitter4j.TwitterException was thrown (TwitterSpec.scala:23)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should fetch the average number of re-tweets per tweet corresponding to inputwhile computing average likes per tweet *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  twitter4j.TwitterException: 401:Authentication credentials (https://dev.twitter.com/pages/auth) were missing or incorrect. Ensure that you have set valid consumer key/secret, access token/secret, and the system clock is in sync.[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31mmessage - Could not authenticate you.[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31mcode - 32[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at twitter4j.HttpClientImpl.handleRequest(HttpClientImpl.java:164)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at twitter4j.HttpClientBase.request(HttpClientBase.java:57)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at twitter4j.HttpClientBase.get(HttpClientBase.java:75)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at twitter4j.TwitterImpl.get(TwitterImpl.java:1786)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at twitter4j.TwitterImpl.search(TwitterImpl.java:268)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at com.knoldus.Twitter.retrieveTweet(Twitter.scala:29)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at com.knoldus.Twitter.$anonfun$getAverageReTweets$1(Twitter.scala:55)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.runtime.java8.JFunction0$mcI$sp.apply(JFunction0$mcI$sp.java:12)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.concurrent.Future$.$anonfun$apply$1(Future.scala:654)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.util.Success.$anonfun$map$1(Try.scala:251)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  ...[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should give exception when there exists no tweet for the input string while computing average re-tweet per tweet *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  Expected exception java.lang.ArithmeticException to be thrown, but twitter4j.TwitterException was thrown (TwitterSpec.scala:33)[0m[0m

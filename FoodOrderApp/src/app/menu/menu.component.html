@@ -22,12 +22,11 @@
           <div class="panel-body">
             <div *ngFor="let item of name.value">
               <span *ngIf="item.vegflag=='veg'"><i class="fa fa-square" style="font-size:10px;color:green;"></i></span>
-              <span *ngIf="item.vegflag == 'nonveg'"><i class="fa fa-square"
-                                                        style="font-size:10px;color:red"></i></span> &nbsp;&nbsp;
-              {{item.name}} <span class="glyphicon glyphicon-plus" style="margin: 5px"
-                                  (click)="addItem(item.name,item.price,1)"></span> <span style="margin: 5px"
-                                                                                          class="glyphicon glyphicon-minus"
-                                                                                          (click)="subItem(item.name,item.price,1)"></span>
+              <span *ngIf="item.vegflag == 'nonveg'">
+                <i class="fa fa-square" style="font-size:10px;color:red"></i></span> &nbsp;&nbsp;
+              {{item.name}}
+              <span class="glyphicon glyphicon-plus" style="margin: 5px" (click)="addItem(item.name,item.price,1)"></span>
+              <span style="margin: 5px" class="glyphicon glyphicon-minus" (click)="subItem(item.name,item.price,1)"></span>
             </div>
           </div>
         </div>

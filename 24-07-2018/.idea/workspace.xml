@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d35d54d-5bfd-4680-9f83-51c503298ba2" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../23-07-2018/parsing-through-extractor/src/main/scala/com/knoldus/EmailParsing.scala" afterPath="$PROJECT_DIR$/../23-07-2018/parsing-through-extractor/src/main/scala/com/knoldus/EmailParsing.scala" />
-      <change beforePath="$PROJECT_DIR$/../23-07-2018/parsing-through-extractor/src/test/scala/com/knoldus/EmailParsingSpec.scala" afterPath="$PROJECT_DIR$/../23-07-2018/parsing-through-extractor/src/test/scala/com/knoldus/EmailParsingSpec.scala" />
+      <change beforePath="$PROJECT_DIR$/../18-07-2018/.idea/18-07-2018.iml" afterPath="$PROJECT_DIR$/../18-07-2018/.idea/18-07-2018.iml" />
+      <change beforePath="$PROJECT_DIR$/../18-07-2018/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../18-07-2018/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/../18-07-2018/case-class-pattern-matching/build.sbt" afterPath="$PROJECT_DIR$/../18-07-2018/case-class-pattern-matching/build.sbt" />
+      <change beforePath="$PROJECT_DIR$/../18-07-2018/case-class-pattern-matching/src/main/scala/com/knoldus/CaseClass.scala" afterPath="$PROJECT_DIR$/../18-07-2018/case-class-pattern-matching/src/main/scala/com/knoldus/CaseClass.scala" />
+      <change beforePath="$PROJECT_DIR$/../18-07-2018/case-class-pattern-matching/src/test/scala/com/knoldus/CaseClassSpec.scala" afterPath="$PROJECT_DIR$/../18-07-2018/case-class-pattern-matching/src/test/scala/com/knoldus/CaseClassSpec.scala" />
+      <change beforePath="$PROJECT_DIR$/../23-07-2018/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../23-07-2018/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/object-equality/src/main/scala/com/knoldus/Person.scala" afterPath="$PROJECT_DIR$/object-equality/src/main/scala/com/knoldus/Person.scala" />
+      <change beforePath="$PROJECT_DIR$/object-equality/src/test/scala/com/knoldus/PersonSpec.scala" afterPath="$PROJECT_DIR$/object-equality/src/test/scala/com/knoldus/PersonSpec.scala" />
+      <change beforePath="$PROJECT_DIR$/../25-07-2018/directory-tree/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../25-07-2018/directory-tree/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -51,9 +58,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -76,7 +84,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -218,7 +225,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25778133" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26177174" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />

@@ -1,7 +1,8 @@
 
 package com.knoldus;
+import java.io.Serializable;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -23,10 +24,10 @@ public class WordCount {
         System.out.println("Enter the String");
         String content=scanner.nextLine();
 
-         WordCount.frequencyCount(content).keySet().stream()
-                .map(key -> Arrays.asList(key,WordCount.frequencyCount(content).get(key)))
+        WordCount.frequencyCount(content).keySet().stream()
+                .map(key -> Arrays.asList(key, WordCount.frequencyCount(content).get(key)))
                 .collect(Collectors.toList())
-                 .forEach(System.out::println);
+                .forEach(System.out::println);
 
     }
 

@@ -29,7 +29,7 @@ export class MenuComponent implements OnInit {
       this.category = this.category.filter(function (item, i, ar) {
         return ar.indexOf(item) === i;
       });
-
+      console.log('><><<><><><>' + data);
       console.log('========>' + JSON.stringify(data));
     });
   }

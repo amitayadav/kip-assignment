@@ -8,9 +8,9 @@ public class MovieDriver {
 
     public static void main(String[] args) {
 
-        Movie movie1 = new Movie(new Long(1), "Night in dark", "12-09-2018", "2018", 9, "Harry", "Mathew");
-        Movie movie2 = new Movie(new Long(2), "Night in Sun", "12-09-2017", "2017", 9, "Brad Pitt", "Newton");
-        Movie movie3 = new Movie(new Long(3), "Night in Bat", "12-09-2016", "2016", 5, "Justin", "Mathew");
+        Movie movie1 = new Movie(new Long(1), "hungama", "12-09-2000", "2000", 9, "Aftab", "karan johar");
+        Movie movie2 = new Movie(new Long(2), "don", "12-09-2004", "1996", 9, "Shahrukh khan", "rohit shetty");
+        Movie movie3 = new Movie(new Long(3), "100days", "12-09-1996", "1996", 5, "Sanjay dutt", "leela bhanshali");
         MovieOperation movieOperation = new MovieOperation(Arrays.asList(movie1, movie2, movie3));
         Scanner scanner = new Scanner(System.in);
 
@@ -48,7 +48,7 @@ public class MovieDriver {
                 case 2:
                     System.out.println("Enter movie id: ");
                     Long movieId = scanner.nextLong();
-                    System.out.println(movieOperation.getMovie(movieId));
+                    System.out.println(movieOperation.getMovie(movieId).join());
                     break;
 
                 case 3:
@@ -124,7 +124,7 @@ public class MovieDriver {
                     System.out.println("invalid operation");
             }
             System.out.println("do u want to continue:Y/N");
-            continuation = scanner.nextLine();
+            continuation = scanner.next();
 
         }
 

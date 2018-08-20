@@ -21,7 +21,7 @@ class TweetWorker extends Actor{
     case tweet:  Tweet if tweet.friendsCount < 500 =>
       counter += 1
       logger.info(s"no of tweets which has friend count less than 500 : $counter")
-      sender() ! "tweets which has friend count less than 500"
+      logger.info(s"$sender() ! tweets which has friend count less than 500")
 
     case _=>
       counter +=1

@@ -28,7 +28,7 @@ class Game extends Actor with TicTacToeLogic {
 
     case PlayStep(index, player) =>
 
-      if (index - 1 >= 0 && index - 1 < 10) {
+      if (index - 1 > 0 && index - 1 < 10) {
 
         if (map(index - 1) == 0) {
           map(index - 1) = player
@@ -40,6 +40,7 @@ class Game extends Actor with TicTacToeLogic {
           }
 
           else {
+            //print("....")
 
             sender() ! TicTacToeMap(map)
           }
@@ -56,9 +57,9 @@ class Game extends Actor with TicTacToeLogic {
 
       }
       else {
-        println("invalid index")
 
-        sender() ! TicTacToeMap(map)
+
+        sender() ! "invalid index"
       }
   }
 }

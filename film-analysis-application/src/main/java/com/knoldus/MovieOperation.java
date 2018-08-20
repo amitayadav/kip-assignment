@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
+
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -43,7 +43,7 @@ public class MovieOperation {
                     .filter(movie -> movieId.equals(movie.getId()))
                     .findAny()
                     .orElse(null);
-            if(requiredMovie == null)
+            if (requiredMovie == null)
                 throw new MovieNotFind("Movie Not found");
             else
                 return requiredMovie;
@@ -73,7 +73,7 @@ public class MovieOperation {
 
     public CompletableFuture<List<Movie>> updateMovie(Long id, String name, String releaseDate, String releaseYear, Integer rating, String actor, String director) {
 
-       Movie updatedMovie = new Movie(id, name, releaseDate, releaseYear, rating, actor, director);
+        Movie updatedMovie = new Movie(id, name, releaseDate, releaseYear, rating, actor, director);
         CompletableFuture<Movie> isExists = getMovie(id);
 
         this.movieList = movieList.thenCompose(list -> {
@@ -124,7 +124,7 @@ public class MovieOperation {
             List<Movie> moviesWithHigherRating = list.stream()
                     .filter(movie -> movie.getRating() > 8 && director.equals(movie.getDirector()))
                     .collect(Collectors.toList());
-            if(moviesWithHigherRating.size() == 0) {
+            if (moviesWithHigherRating.size() == 0) {
                 throw new MovieNotFind("Required Movies not found");
             } else
                 return moviesWithHigherRating;
@@ -144,13 +144,12 @@ public class MovieOperation {
     }
 
 
-
-    private LocalDate parseDate(String date){
+    private LocalDate parseDate(String date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return LocalDate.parse(date, formatter);
     }
 
-    public CompletableFuture<List<Movie>> getMoviesAfterGivenDate(String date){
+    public CompletableFuture<List<Movie>> getMoviesAfterGivenDate(String date) {
         LocalDate formattedDate = parseDate(date);
 
         return movieList.thenApply((list) -> {
@@ -159,15 +158,10 @@ public class MovieOperation {
                     .filter(movie -> parseDate(movie.getReleaseDate()).isAfter(formattedDate))
                     .collect(Collectors.toList());
 
-            if(moviesReleasedAfterDate.size() == 0)
-            //{
+            if (moviesReleasedAfterDate.size() == 0)
+                throw new MovieNotFind("Required Movies not found");
 
-                    throw new MovieNotFind("Required Movies not found");
-                /*catch (MovieNotFind movieNotFind) {
-                    movieNotFind.printStackTrace();
-                }
-            } */
-                else
+            else
                 return moviesReleasedAfterDate;
 
         }).exceptionally(ex -> {
@@ -186,10 +180,10 @@ public class MovieOperation {
                             Integer.valueOf(movie.getReleaseYear()) < endYearInt)
                     .collect(Collectors.toList());
             if (moviesInBetweenYears.size() == 0)
-               // try {
-                    throw new MovieNotFind("movie not find");
-               // } catch (MovieNotFind movieNotFind) {
-                 //   movieNotFind.printStackTrace();
+                // try {
+                throw new MovieNotFind("movie not find");
+                // } catch (MovieNotFind movieNotFind) {
+                //   movieNotFind.printStackTrace();
                 //}
             else
                 return moviesInBetweenYears;
@@ -210,9 +204,9 @@ public class MovieOperation {
                     .collect(Collectors.toList());
             if (moviesInBetweenDate.size() == 0)
                 //try {
-                    throw new MovieNotFind("movie not find");
+                throw new MovieNotFind("movie not find");
                 //} catch (MovieNotFind movieNotFind) {
-                  //  movieNotFind.printStackTrace();
+                //  movieNotFind.printStackTrace();
                 //}
             else
                 return moviesInBetweenDate;

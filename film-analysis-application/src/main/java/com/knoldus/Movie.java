@@ -16,10 +16,19 @@ public class Movie {
     private String director;
 
 
+    public Movie(Long id, String movieName, String releaseDate, String releaseYear, Integer rating, String actor, String director) {
+        this.id = new Long(id);
+        this.movieName = movieName;
+        this.releaseDate = releaseDate;
+        this.releaseYear = releaseYear;
+        this.rating = rating;
+        this.actor = actor;
+        this.director = director;
+    }
+
     public Long getId() {
         return id;
     }
-
 
     public String getMovieName() {
         return movieName;
@@ -60,7 +69,7 @@ public class Movie {
     public void setActor(String actor) {
         this.actor = actor;
     }
-
+    //{
     public String getDirector() {
         return director;
     }
@@ -69,15 +78,10 @@ public class Movie {
         this.director = director;
     }
 
-
-    public Movie(Long id, String movieName, String releaseDate, String releaseYear, Integer rating, String actor, String director) {
-        this.id = new Long(id);
-        this.movieName = movieName;
-        this.releaseDate = releaseDate;
-        this.releaseYear = releaseYear;
-        this.rating = rating;
-        this.actor = actor;
-        this.director = director;
+    @Override
+    public String toString() {
+        return "movie Id:\t" + id + "\tmovie name: " + movieName + "\trelease date & year: " + releaseDate + "\t" + releaseYear
+                + "\trating: " + rating + "\tactor: " + actor + "\t director: " + director;
     }
 }
 

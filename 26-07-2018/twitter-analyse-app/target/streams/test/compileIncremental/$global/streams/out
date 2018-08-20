@@ -1,0 +1,27 @@
+[0m[[0m[0mdebug[0m] [0m[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial source changes: [0m
+[0m[[0m[0mdebug[0m] [0m[0m	removed:Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0m	added: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0m	modified: Set(/home/knoldus/Documents/assignments/kip-assignment/26-07-2018/twitter-analyse-app/src/test/scala/com/knoldus/TwitterSpec.scala)[0m
+[0m[[0m[0mdebug[0m] [0m[0mInvalidated products: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0mExternal API changes: API Changes: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0mModified binary dependencies: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial directly invalidated classes: Set(com.knoldus.TwitterSpec)[0m
+[0m[[0m[0mdebug[0m] [0m[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mSources indirectly invalidated by:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	product: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0m	binary dep: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0m	external source: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0mAll sources are invalidated.[0m
+[0m[[0m[0mdebug[0m] [0m[0mRecompiling all 1 sources: invalidated sources (1) exceeded 50.0% of all sources[0m
+[0m[[0m[0minfo[0m] [0m[0mCompiling 1 Scala source to /home/knoldus/Documents/assignments/kip-assignment/26-07-2018/twitter-analyse-app/target/scala-2.12/test-classes ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mGetting org.scala-sbt:compiler-bridge_2.12:1.1.7:compile for Scala 2.12.6[0m
+[0m[[0m[0mdebug[0m] [0m[0mGetting org.scala-sbt:compiler-bridge_2.12:1.1.7:compile for Scala 2.12.6[0m
+[0m[[0m[0mdebug[0m] [0m[0m[zinc] Running cached compiler 171ed116 for Scala compiler version 2.12.6[0m
+[0m[[0m[0mdebug[0m] [0m[0m[zinc] The Scala compiler is invoked with:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	-bootclasspath[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/home/knoldus/Documents/application/jdk1.8.0_151/jre/lib/resources.jar:/home/knoldus/Documents/application/jdk1.8.0_151/jre/lib/rt.jar:/home/knoldus/Documents/application/jdk1.8.0_151/jre/lib/sunrsasign.jar:/home/knoldus/Documents/application/jdk1.8.0_151/jre/lib/jsse.jar:/home/knoldus/Documents/application/jdk1.8.0_151/jre/lib/jce.jar:/home/knoldus/Documents/application/jdk1.8.0_151/jre/lib/charsets.jar:/home/knoldus/Documents/application/jdk1.8.0_151/jre/lib/jfr.jar:/home/knoldus/Documents/application/jdk1.8.0_151/jre/classes:/home/knoldus/.sbt/boot/scala-2.12.6/lib/scala-library.jar[0m
+[0m[[0m[0mdebug[0m] [0m[0m	-classpath[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/home/knoldus/Documents/assignments/kip-assignment/26-07-2018/twitter-analyse-app/target/scala-2.12/test-classes:/home/knoldus/Documents/assignments/kip-assignment/26-07-2018/twitter-analyse-app/target/scala-2.12/classes:/home/knoldus/.ivy2/cache/org.twitter4j/twitter4j-core/jars/twitter4j-core-4.0.6.jar:/home/knoldus/.ivy2/cache/org.scalatest/scalatest_2.12/bundles/scalatest_2.12-3.0.5.jar:/home/knoldus/.ivy2/cache/org.scalactic/scalactic_2.12/bundles/scalactic_2.12-3.0.5.jar:/home/knoldus/.sbt/boot/scala-2.12.6/lib/scala-reflect.jar:/home/knoldus/.ivy2/cache/org.scala-lang.modules/scala-xml_2.12/bundles/scala-xml_2.12-1.0.6.jar[0m
+[0m[[0m[0mdebug[0m] [0m[0mScala compilation took 1.280960693 s[0m
+[0m[[0m[0minfo[0m] [0m[0mDone compiling.[0m
