@@ -1,13 +1,16 @@
 # Routes
-GET         /welcome                                 controllers.Application.index
-GET         /signUp                                  controllers.Application.signUpIndex
-POST         /signUp                                  controllers.Application.signUp
-GET         /signIn                                  controllers.Application.signInIndex
-POST        /signIn                                 controllers.Application.signIn
-GET         /reset                                 controllers.Application.resetPassword
-GET         /nProfile                               controllers.Application.normalProfile
-GET         /profile                               controllers.Application.profile
-GET         /aProfile                               controllers.Application.adminProfile
-GET         /vasgnmnt                               controllers.Application.viewAssignment
-GET         /checkUser/:username                     controllers.Application.getUser(username:String)
-GET         /assets/*file                          controllers.Assets.versioned(path="/public",file:Asset)
+
+GET         /welcome                             controllers.Application.index
+GET         /signUp                              controllers.Application.signUpIndex
+POST        /signUp                              controllers.Application.signUp
+GET         /signIn                              controllers.Application.signInIndex
+POST        /signIn                              controllers.Application.signIn
+GET         /reset                               controllers.Application.resetPassword
+GET         /nProfile                            controllers.Application.normalProfile
+GET         /profile                             controllers.Application.profile
+GET         /aProfile                            controllers.Application.adminProfile
+GET         /vuser                               controllers.Application.viewUser
+GET         /vasgnmnt                            controllers.Application.viewAssignment
+GET         /aasgnmnt                            controllers.Application.addAssignment
+GET         /checkUser/:username                 controllers.Application.getUser(username:String)
+GET         /assets/*file                        controllers.Assets.versioned(path="/public",file:Asset)

@@ -1,23 +1,22 @@
 package controllers
 
-import akka.Done
-import forms.UserForm
+import forms.{LoginForm, UserForm}
 import javax.inject.Inject
-import modals.CacheRepo
+import modals.{DatabaseRepo, UserRepo}
 import play.api.mvc._
 
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
 
 class Application @Inject()(controllerComponent: ControllerComponents,
-                            userForm: UserForm, cacheRepo: CacheRepo) extends AbstractController(controllerComponent) {
+                            userForm: UserForm,loginForm:LoginForm, dbRepo: DatabaseRepo) extends AbstractController(controllerComponent) {
 
   def index: Action[AnyContent] = Action.async { implicit request =>
     Future.successful(Ok(views.html.main()))
   }
 
   def signUpIndex: Action[AnyContent] = Action.async{ implicit request=>
-    Future.successful(Ok(views.html.signUp()))
+    Future.successful(Ok(views.html.signUp(userForm.userForm)))
 
   }
 
@@ -25,15 +24,17 @@ class Application @Inject()(controllerComponent: ControllerComponents,
 
     userForm.userForm.bindFromRequest.fold(
       formWithError => {
-        Future.successful(BadRequest(s"${formWithError.errors}"))
+        Future.successful(Ok(views.html.signUp(formWithError)))
       },
       data => {
-        cacheRepo.get(data.username).flatMap {
+        dbRepo.get(data.username).flatMap {
           optionalUser =>
             optionalUser.fold {
-              cacheRepo.store(data).map {
-                case Done => Ok(views.html.normalUserProfile())
-                case _ => InternalServerError("something went wrong")
+              val dbPayload: UserRepo= UserRepo(0,data.firstname,data.middlename,data.lastname,data.username,
+                data.password.password,data.phoneNo,data.gender,data.age,data.hobbies)
+              dbRepo.store(dbPayload).map {_=>
+               Ok(views.html.normalUserProfile())
+
               }
 
             } {
@@ -51,27 +52,33 @@ class Application @Inject()(controllerComponent: ControllerComponents,
 
 
   def signIn: Action[AnyContent] = Action.async { implicit request =>
-    userForm.userForm.bindFromRequest.fold(
+    loginForm.loginForm.bindFromRequest.fold(
       formWithError => {
         Future.successful(BadRequest(s"${formWithError.errors}"))
       },
       data => {
-        cacheRepo.get(data.username).flatMap{
-          optionalUser =>
+        dbRepo.get(data.username).map{
+          optionalUser=>
             optionalUser.fold{
-              cacheRepo.store(data).map {
-                case Done => Ok("login successful")
-                case _ => InternalServerError("something went wrong")
+              NotFound("user does not exits")
+            } { loginuser => {
+              if (loginuser.password == data.password) {
+                Redirect(routes.Application.normalProfile())
               }
-              }{_=> Future.successful(Ok("user does not exits"))
+              else {
+                Ok("invalid username or passsword")
+              }
+
+              }
             }
         }
       }
     )
-
   }
+
+
   def getUser(username: String) :Action[AnyContent] = Action.async { implicit request =>
-    cacheRepo.get(username).map{
+    dbRepo.get(username).map{
       optionaluser=>
         optionaluser.fold{
           NotFound("user does not exists")
@@ -87,7 +94,7 @@ class Application @Inject()(controllerComponent: ControllerComponents,
 
   def resetPassword: Action[AnyContent] = Action.async { implicit request =>
 
-    Future.successful(Ok(views.html.forgetPassword()))
+    Future.successful(Ok(views.html.forgetPassword(userForm.userForm)))
   }
 
   def normalProfile: Action[AnyContent] = Action.async{ implicit request =>
@@ -101,6 +108,12 @@ class Application @Inject()(controllerComponent: ControllerComponents,
   }
   def viewAssignment: Action[AnyContent] = Action.async{ implicit request =>
     Future.successful(Ok(views.html.viewAssignments()))
+  }
+  def addAssignment: Action[AnyContent] = Action.async{ implicit request =>
+    Future.successful(Ok(views.html.addAssignments()))
+  }
+  def viewUser: Action[AnyContent] = Action.async{ implicit request =>
+    Future.successful(Ok(views.html.viewUser()))
   }
 
 }

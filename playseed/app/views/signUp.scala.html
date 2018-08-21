@@ -1,4 +1,4 @@
-@()(implicit requestHeader: RequestHeader,flash:Flash)
+@(regFrom: Form[forms.User])(implicit requestHeader: RequestHeader,flash:Flash)
 @import helper._
 
 <!DOCTYPE html>
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/signup.css")">
 </head>
 <body>
-<div class="container">
+<div id="id01" class="container">
     <div class="center_div">
 
         <form  class="modal-content" action="/signUp" method="POST">
@@ -36,30 +36,43 @@
                 <input type="text" name="username" id="username" required/>
 
                 <label for="Password">Password</label>
-                <input type="password" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                <input type="password" name="passwordGroup.password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
                        required/>
 
                 <label for="confirmPassword">Re-enter Password</label>
-                <input type="password" name="confirmPassword" id="confirmPassword" required/>
+                <input type="password" name="passwordGroup.confirmPassword" id="confirmPassword" required/>
+                <p>@regFrom("passwordGroup").errors.map(error=>error.messages)</p>
 
                 <label for="phoneNo">Phone Number</label>
-                <input type="number" name="phoneNo" id="phoneNo" placeholder="Enter 10 digit number" required/><br>
+                <input type="number" name="phoneNo" id="phoneNo" placeholder="Enter 10 digit number" required/>
 
-                Gender :
-                <input type="radio" name="gender" value="male" checked/> Male
-                <input type="radio" name="gender" value="female"/> Female<br>
+                Gender:
+                <select>
+                    <option value="0" name="gender">Select gender:</option>
+                    <option value="1" name="gender">male</option>
+                    <option value="2" name="gender">female</option>
+                </select>
+
 
                 <label for="age">Age</label>
-                <input type="number" name="age" min="18" max="75" id="age" required/><br>
+                <input type="number" name="age" min="18" max="75" id="age" required/>
 
-               Hobbies
-                <select>
-                    <option value="0">Select hobby:</option>
-                    <option value="1">singing</option>
-                    <option value="2">reading</option>
-                    <option value="3">playing</option>
-                    <option value="4">sleeping</option>
-                </select>
+               Hobbies:
+                <label class="container">singing
+                    <input type="checkbox" checked="checked" name="hobbies">
+                </label>
+
+                <label class="container">dancing
+                    <input type="checkbox" name="hobbies">
+                </label>
+
+                <label class="container">reading
+                    <input type="checkbox" name="hobbies">
+                </label>
+
+                <label class="container">playing
+                    <input type="checkbox" name="hobbies">
+                </label><br>
 
                 <p>By creating an account you agree to our <a href="#" class="terms-style">
                     Terms & Privacy</a>.</p>
@@ -68,10 +81,10 @@
                     <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">
                         Cancel
                     </button>
-                    <button type="submit" class="signup" id="button" >Sign Up</button>
+                    <button type="submit" class="signupbtn" id="button" >Sign Up</button>
                 </div>
                     <div class="container signin">
-                        <p>Already have an account? <a href="@routes.Application.signIn">Sign in</a>.</p>
+                        <p>Already have an account? <a href="@routes.Application.signInIndex">Sign in</a>.</p>
                     </div>
 
 
@@ -81,7 +94,7 @@
 </div>
 
 
-
+<script src="@routes.Assets.versioned("javascripts/script.js")"></script>
 </body>
 </html>
 
