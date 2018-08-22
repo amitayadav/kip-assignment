@@ -1,15 +1,16 @@
 package controllers
 
-import forms.{AssignmentForm, LoginForm, UserForm}
+import forms.{AssignmentForm, LoginForm, ResetForm, UserForm}
 import javax.inject.Inject
 import modals.{AssignmentDbRepo, AssignmentRepo, DatabaseRepo, UserRepo}
+import play.api.Logger
 import play.api.mvc._
 
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
 
 class Application @Inject()(controllerComponent: ControllerComponents,
-                            userForm: UserForm,loginForm:LoginForm,assignmentForm: AssignmentForm, dbRepo: DatabaseRepo,assignmentDbRepo:AssignmentDbRepo ) extends AbstractController(controllerComponent) {
+                            userForm: UserForm,resetForm: ResetForm,loginForm:LoginForm,assignmentForm: AssignmentForm, dbRepo: DatabaseRepo,assignmentDbRepo:AssignmentDbRepo ) extends AbstractController(controllerComponent) {
 
   def index: Action[AnyContent] = Action.async { implicit request =>
     Future.successful(Ok(views.html.main()))
@@ -97,8 +98,22 @@ class Application @Inject()(controllerComponent: ControllerComponents,
 
 
   def resetPassword: Action[AnyContent] = Action.async { implicit request =>
+    resetForm.resetForm.bindFromRequest.fold(
+      formWithError => {
+        Future.successful(Ok(s"${formWithError.errors}"))
+      },
+      data => {
+        dbRepo.get(data.username).map{
+          optionalUser=>
+            optionalUser.fold{
+              NotFound("user does not exits")}{_=>
 
-    Future.successful(Ok(views.html.forgetPassword(userForm.userForm)))
+             Ok("password updated")
+
+
+        }}
+      }
+        )
   }
 
   def normalProfile: Action[AnyContent] = Action.async{ implicit request =>
@@ -133,20 +148,21 @@ class Application @Inject()(controllerComponent: ControllerComponents,
 
 
   def viewAssignment: Action[AnyContent] = Action.async{ implicit request =>
-    assignmentForm.assignmentForm.bindFromRequest.fold(
-      formWithError => {
-        Future.successful(BadRequest(s"${formWithError.errors}"))
-      },
-      data => {
+
         assignmentDbRepo.get.map{assgn =>
           Ok(views.html.viewAssignments(assgn))
 
             }
-        }
-    )
+
   }
 
-  def addAssignment: Action[AnyContent] = Action.async{ implicit request =>
+  def addAssignmentIndex: Action[AnyContent] = Action.async{ implicit request =>
+
+    Future.successful(Ok(views.html.addAssignments()))
+
+  }
+
+  def addAssignment: Action[AnyContent] = Action.async { implicit request =>
     assignmentForm.assignmentForm.bindFromRequest.fold(
       formWithError => {
         Future.successful(Ok(s"${formWithError.errors}"))
@@ -166,6 +182,7 @@ class Application @Inject()(controllerComponent: ControllerComponents,
       }
     )
   }
+
 
 
   def viewUser: Action[AnyContent] = Action.async { implicit request =>

@@ -11,6 +11,7 @@ GET         /profile                             controllers.Application.profile
 GET         /aProfile                            controllers.Application.adminProfile
 GET         /vuser                               controllers.Application.viewUser
 GET         /vasgnmnt                            controllers.Application.viewAssignment
-GET         /aasgnmnt                            controllers.Application.addAssignment
+POST        /aasgnmnt                            controllers.Application.addAssignment
+GET         /aasgnmnt                            controllers.Application.addAssignmentIndex
 GET         /checkUser/:username                 controllers.Application.getUser(username:String)
 GET         /assets/*file                        controllers.Assets.versioned(path="/public",file:Asset)
