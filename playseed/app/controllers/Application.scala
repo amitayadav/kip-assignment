@@ -1,15 +1,15 @@
 package controllers
 
-import forms.{LoginForm, UserForm}
+import forms.{AssignmentForm, LoginForm, UserForm}
 import javax.inject.Inject
-import modals.{DatabaseRepo, UserRepo}
+import modals.{AssignmentDbRepo, AssignmentRepo, DatabaseRepo, UserRepo}
 import play.api.mvc._
 
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
 
 class Application @Inject()(controllerComponent: ControllerComponents,
-                            userForm: UserForm,loginForm:LoginForm, dbRepo: DatabaseRepo) extends AbstractController(controllerComponent) {
+                            userForm: UserForm,loginForm:LoginForm,assignmentForm: AssignmentForm, dbRepo: DatabaseRepo,assignmentDbRepo:AssignmentDbRepo ) extends AbstractController(controllerComponent) {
 
   def index: Action[AnyContent] = Action.async { implicit request =>
     Future.successful(Ok(views.html.main()))
@@ -24,16 +24,20 @@ class Application @Inject()(controllerComponent: ControllerComponents,
 
     userForm.userForm.bindFromRequest.fold(
       formWithError => {
-        Future.successful(Ok(views.html.signUp(formWithError)))
+        Future.successful(Ok(s"${formWithError.errors}"))
       },
       data => {
         dbRepo.get(data.username).flatMap {
           optionalUser =>
             optionalUser.fold {
-              val dbPayload: UserRepo= UserRepo(0,data.firstname,data.middlename,data.lastname,data.username,
+              val dbPayload: UserRepo= UserRepo(0,data.userType,data.firstname,data.middlename,data.lastname,data.username,
                 data.password.password,data.phoneNo,data.gender,data.age,data.hobbies)
-              dbRepo.store(dbPayload).map {_=>
-               Ok(views.html.normalUserProfile())
+              dbRepo.store(dbPayload).map { _ =>
+                if(data.userType == "normal user")
+              {Redirect(routes.Application.normalProfile())}
+                else
+                 { Redirect(routes.Application.adminProfile())}
+
 
               }
 
@@ -101,19 +105,73 @@ class Application @Inject()(controllerComponent: ControllerComponents,
     Future.successful(Ok(views.html.normalUserProfile()))
   }
   def profile: Action[AnyContent] = Action.async{ implicit request =>
-    Future.successful(Ok(views.html.profile()))
+    userForm.userForm.bindFromRequest.fold(
+      formWithError => {
+        Future.successful(Ok(views.html.profile(formWithError)))
+      },
+      data => {
+        dbRepo.get(data.username).flatMap {
+          optionalUser =>
+            optionalUser.fold {
+              val dbPayload: UserRepo= UserRepo(0,data.userType,data.firstname,data.middlename,data.lastname,data.username,
+                data.password.password,data.phoneNo,data.gender,data.age,data.hobbies)
+              dbRepo.store(dbPayload).map { _ =>
+                Ok("updation successful")
+              }
+            } {
+              _ => Future.successful(Ok(" already updated"))
+            }
+        }
+
+      }
+    )
   }
+
   def adminProfile: Action[AnyContent] = Action.async{ implicit request =>
     Future.successful(Ok(views.html.adminProfile()))
   }
+
+
   def viewAssignment: Action[AnyContent] = Action.async{ implicit request =>
-    Future.successful(Ok(views.html.viewAssignments()))
+    assignmentForm.assignmentForm.bindFromRequest.fold(
+      formWithError => {
+        Future.successful(BadRequest(s"${formWithError.errors}"))
+      },
+      data => {
+        assignmentDbRepo.get.map{assgn =>
+          Ok(views.html.viewAssignments(assgn))
+
+            }
+        }
+    )
   }
+
   def addAssignment: Action[AnyContent] = Action.async{ implicit request =>
-    Future.successful(Ok(views.html.addAssignments()))
+    assignmentForm.assignmentForm.bindFromRequest.fold(
+      formWithError => {
+        Future.successful(Ok(s"${formWithError.errors}"))
+      },
+      data => {
+        assignmentDbRepo.get(data.title).flatMap { optionalUser =>
+          optionalUser.fold {
+            val dbPayload: AssignmentRepo = AssignmentRepo(0, data.title, data.details)
+            assignmentDbRepo.store(dbPayload).map { _ =>
+              Redirect(routes.Application.profile())
+
+            }
+          } { _ =>
+            Future.successful(Ok("User already exist"))
+          }
+        }
+      }
+    )
   }
-  def viewUser: Action[AnyContent] = Action.async{ implicit request =>
-    Future.successful(Ok(views.html.viewUser()))
+
+
+  def viewUser: Action[AnyContent] = Action.async { implicit request =>
+    dbRepo.get.map { data =>
+      Ok(views.html.viewUser(data))
+    }
   }
 
 }

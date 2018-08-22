@@ -1,4 +1,3 @@
-/*
 package controllers
 
 import play.api.http.HttpErrorHandler
@@ -22,4 +21,3 @@ class ErrorHandler extends HttpErrorHandler {
     )
   }
 }
-*/

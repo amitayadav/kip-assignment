@@ -8,8 +8,8 @@ import slick.jdbc.PostgresProfile.api._
 
 import scala.concurrent.Future
 
-case class UserRepo(id:Long,firstname:String,middlename:Option[String],lastname:String,username:String,
-                    password:String,phoneNo:Int,gender:String,age:Int,hobbies:List[String])
+case class UserRepo(id:Long,userType:String,firstname:String,middlename:Option[String],lastname:String,username:String,
+                    password:String,phoneNo:Int,gender:String,age:Int,hobbies:String)
 
 trait UserTable extends HasDatabaseConfigProvider[JdbcProfile]{
   import profile.api._
@@ -19,18 +19,18 @@ trait UserTable extends HasDatabaseConfigProvider[JdbcProfile]{
   private[modals] class UserProfile(tag:Tag) extends Table[UserRepo](tag,"userprofile"){
 
     def id: Rep[Long] = column[Long]("id",O.PrimaryKey,O.AutoInc)
-
+    def userType: Rep[String] = column[String]("userType")
     def firstname: Rep[String] = column[String]("firstname")
-    def middlename: Rep[String] = column[String]("middlename")
+    def middlename: Rep[Option[String]] = column[Option[String]]("middlename")
     def lastname: Rep[String] = column[String]("lastname")
     def username: Rep[String] = column[String]("username")
     def password: Rep[String] = column[String]("password")
     def age: Rep[Int] = column[Int]("age")
     def gender: Rep[String] = column[String]("gender")
-    def hobbies: Rep[List[String]] = column[List[String]]("hobbies")
+    def hobbies: Rep[String] = column[String]("hobbies")
     def phoneNo: Rep[Int] = column[Int]("phoneNo")
 
-    def * : ProvenShape[UserRepo] = (id,firstname,middlename,lastname,username,password,phoneNo,gender,age,hobbies) <> (UserRepo.tupled,UserRepo.unapply)
+    def * : ProvenShape[UserRepo] = (id,userType,firstname,middlename,lastname,username,password,phoneNo,gender,age,hobbies) <> (UserRepo.tupled , UserRepo.unapply)
   }
 }
 
@@ -52,5 +52,11 @@ trait Impl{
       userProfileQuery.filter(_.username === username.toLowerCase).result.headOption
     }
 
+  }
+
+  def get: Future[Seq[UserRepo]]={
+    db.run{
+      userProfileQuery.result
+    }
   }
 }

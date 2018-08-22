@@ -16,9 +16,9 @@ window.onclick = function(event) {
 
 function formValidate()
 {
- return (nameValidation(document.myForm.firstName.value) &&
-         nameValidation(document.myForm.middleName.value) &&
-         nameValidation(document.myForm.lastName.value) &&
+ return (nameValidation(document.customForm.firstName.value) &&
+         nameValidation(document.customForm.middleName.value) &&
+         nameValidation(document.customFormm.lastName.value) &&
          passwordValidate()
          );
 }
