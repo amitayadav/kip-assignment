@@ -2,17 +2,20 @@
 package com.knoldus
 
 import java.util.Properties
+
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerConfig, ProducerRecord}
+import org.apache.log4j.Logger
 
 class ProducerStudentClass(topic: String, brokers: String) {
 
   val producerStudent = new KafkaProducer[String, Student](configuration)
+  val log = Logger.getLogger(this.getClass)
 
 
   private def configuration: Properties = {
     val props = new Properties()
     props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, brokers)
-    props.put("key.serializer", "com.knoldus.StudentSerializer")
+    props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer")
     props.put("value.serializer","com.knoldus.StudentSerializer")
     props
   }
@@ -20,9 +23,9 @@ class ProducerStudentClass(topic: String, brokers: String) {
 
   def sendMessages(topic:String): Unit = {
 
-   //val student=Student(1,"Amita")
-    val record = new ProducerRecord[String, Student](topic, "1", Student(1,"Amita"))
-    producerStudent.send(record)
+
+    producerStudent.send(new ProducerRecord[String, Student](topic, "1", Student(1,"Amita")))
+    log.info("Message produced.....")
     producerStudent.close()
   }
 
