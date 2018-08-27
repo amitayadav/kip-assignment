@@ -29,7 +29,7 @@ object StreamTransformer extends App {
     props
   }
 
-  val builder = new StreamsBuilder()
+  val builder = new StreamsBuilder
   val originalStreamedTable: KStream[String,Employee] = builder.stream("test-sqlite-jdbc-employee")
 
   val userSerializer = new UserSerializer
@@ -49,7 +49,7 @@ object StreamTransformer extends App {
     val user = User(employee.id, s"$prefix ${employee.firstname} ${employee.lastname}")
     KeyValue.pair(key, user)
   })
-  userStreamTable.to( "User", Produced.`with`(Serdes.String(), userSerde))
+  userStreamTable.to( "user", Produced.`with`(Serdes.String(), userSerde))
 
 
   originalStreamedTable.print()

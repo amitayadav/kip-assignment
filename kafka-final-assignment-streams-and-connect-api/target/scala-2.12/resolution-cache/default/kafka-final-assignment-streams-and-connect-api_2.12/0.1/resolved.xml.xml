@@ -4,7 +4,7 @@
 		module="kafka-final-assignment-streams-and-connect-api_2.12"
 		revision="0.1"
 		status="integration"
-		publication="20180825172333"
+		publication="20180827115741"
 	>
 		<description>
 		kafka-final-assignment-streams-and-connect-api
@@ -35,5 +35,6 @@
 		<dependency org="org.apache.kafka" name="kafka-clients" rev="0.11.0.0" conf="compile->default(compile)"/>
 		<dependency org="log4j" name="log4j" rev="1.2.17" conf="compile->default(compile)"/>
 		<dependency org="org.apache.kafka" name="kafka-streams" rev="1.0.0" conf="compile->default(compile)"/>
+		<dependency org="net.liftweb" name="lift-json_2.12" rev="3.1.1" conf="compile->default(compile)"/>
 	</dependencies>
 </ivy-module>

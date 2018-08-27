@@ -4,6 +4,7 @@ import java.io.{ByteArrayInputStream, ObjectInputStream}
 import java.util
 
 import Modals.Employee
+import net.liftweb.json.{DefaultFormats, parse}
 import org.apache.kafka.common.serialization.Deserializer
 import org.apache.log4j.Logger
 
@@ -19,12 +20,20 @@ class EmployeeDeserializer extends Deserializer[Employee]{
   override def deserialize(topic: String, bytes: Array[Byte]): Employee = {
 
     try {
-      if (bytes == null)
-        log.info("Null received at deserialize")
-      val byteInputStream = new ByteArrayInputStream(bytes)
-      val inputObject = new ObjectInputStream(byteInputStream)
-      val objectDeserialized = inputObject.readObject().asInstanceOf[Employee]
-      objectDeserialized
+      implicit val formats = DefaultFormats
+
+      val jsonString = """
+  {"schema":{"type":"struct",
+ |  "fields":[{"type":"int64",
+ |  "optional":false,
+ |  "field":"id"},
+ |  {"type":"string","optional":true,"field":"firstname"},{"type":"string","optional":true,"field":"lastname"},{"type":"string","optional":true,"field":"gender"}],"optional":false,"name":"employee"},"payload":{"id":1,"firstname":"amita","lastname":"yadav","gender":"female"}}
+ |  """
+
+      val jValue = parse(jsonString)
+
+      val employee = jValue.extract[Employee]
+      employee
     }
     catch {
       case ex: Exception => throw new Exception(ex.getMessage)
