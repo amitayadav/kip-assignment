@@ -9,7 +9,7 @@ public class Movie {
 
     private String releaseYear;
 
-    private Integer rating; // Out of 10
+    private Integer rating;
 
     private String actor;
 

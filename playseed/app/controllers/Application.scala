@@ -3,7 +3,6 @@ package controllers
 import forms.{AssignmentForm, LoginForm, ResetForm, UserForm}
 import javax.inject.Inject
 import modals.{AssignmentDbRepo, AssignmentRepo, DatabaseRepo, UserRepo}
-import play.api.Logger
 import play.api.mvc._
 
 import scala.concurrent.Future
@@ -67,7 +66,7 @@ class Application @Inject()(controllerComponent: ControllerComponents,
             optionalUser.fold{
               NotFound("user does not exits")
             } { loginuser => {
-              if (loginuser.password == data.password) {
+              if (loginuser.password == data.password && userForm.userForm.) {
                 Redirect(routes.Application.normalProfile())
               }
               else {

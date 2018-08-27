@@ -12,6 +12,7 @@ public class MovieDriver {
         Movie movie2 = new Movie(new Long(2), "don", "12-09-2004", "1996", 9, "Shahrukh khan", "rohit shetty");
         Movie movie3 = new Movie(new Long(3), "100days", "12-09-1996", "1996", 5, "Sanjay dutt", "leela bhanshali");
         MovieOperation movieOperation = new MovieOperation(Arrays.asList(movie1, movie2, movie3));
+
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("--Film Analysis Application-----------\n ");
@@ -123,13 +124,11 @@ public class MovieDriver {
                 default:
                     System.out.println("invalid operation");
             }
+
             System.out.println("do u want to continue:Y/N");
             continuation = scanner.next();
 
         }
 
-
     }
 }
-
-

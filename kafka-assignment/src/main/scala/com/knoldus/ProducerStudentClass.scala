@@ -24,7 +24,7 @@ class ProducerStudentClass(topic: String, brokers: String) {
   def sendMessages(topic:String): Unit = {
 
 
-    producerStudent.send(new ProducerRecord[String, Student](topic, "1", Student(1,"Amita")))
+    producerStudent.send(new ProducerRecord[String, Student](topic, "1", Student(1,s"Amita")))
     log.info("Message produced.....")
     producerStudent.close()
   }

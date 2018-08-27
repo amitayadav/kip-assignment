@@ -5,7 +5,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -38,7 +37,8 @@ public class MovieOperation {
 
     public CompletableFuture<Movie> getMovie(Long movieId) {
 
-        return movieList.thenApply((list) -> {
+        return movieList
+                .thenApply((list) -> {
             Movie requiredMovie = list.stream()
                     .filter(movie -> movieId.equals(movie.getId()))
                     .findAny()
@@ -47,7 +47,8 @@ public class MovieOperation {
                 throw new MovieNotFind("Movie Not found");
             else
                 return requiredMovie;
-        }).exceptionally(ex -> {
+        })
+                .exceptionally(ex -> {
             System.out.println(ex.getMessage());
             return null;
         });
@@ -145,17 +146,17 @@ public class MovieOperation {
 
 
     private LocalDate parseDate(String date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        return LocalDate.parse(date, formatter);
+        DateTimeFormatter parser = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        return LocalDate.parse(date, parser);
     }
 
     public CompletableFuture<List<Movie>> getMoviesAfterGivenDate(String date) {
-        LocalDate formattedDate = parseDate(date);
+        LocalDate parsedDate = parseDate(date);
 
         return movieList.thenApply((list) -> {
 
             List<Movie> moviesReleasedAfterDate = list.stream()
-                    .filter(movie -> parseDate(movie.getReleaseDate()).isAfter(formattedDate))
+                    .filter(movie -> parseDate(movie.getReleaseDate()).isAfter(parsedDate))
                     .collect(Collectors.toList());
 
             if (moviesReleasedAfterDate.size() == 0)
@@ -163,6 +164,8 @@ public class MovieOperation {
 
             else
                 return moviesReleasedAfterDate;
+
+
 
         }).exceptionally(ex -> {
             System.out.println(ex.getMessage());
@@ -194,20 +197,17 @@ public class MovieOperation {
     }
 
     public CompletableFuture<List<Movie>> getListOfMoviesBetweenDates(String startDate, String endDate) {
-        LocalDate formattedStartDate = parseDate(startDate);
-        LocalDate formattedEndDate = parseDate(endDate);
+        LocalDate parsedStartDate = parseDate(startDate);
+        LocalDate parsedEndDate = parseDate(endDate);
 
         return movieList.thenApply((list) -> {
             List<Movie> moviesInBetweenDate = list.stream()
-                    .filter(movie -> formattedStartDate.isBefore(parseDate(movie.getReleaseDate())) &&
-                            formattedEndDate.isAfter(parseDate(movie.getReleaseDate())))
+                    .filter(movie -> parsedStartDate.isBefore(parseDate(movie.getReleaseDate())) &&
+                            parsedEndDate.isAfter(parseDate(movie.getReleaseDate())))
                     .collect(Collectors.toList());
+
             if (moviesInBetweenDate.size() == 0)
-                //try {
                 throw new MovieNotFind("movie not find");
-                //} catch (MovieNotFind movieNotFind) {
-                //  movieNotFind.printStackTrace();
-                //}
             else
                 return moviesInBetweenDate;
         }).exceptionally(ex -> {
