@@ -2,8 +2,6 @@
 package com.knoldus
 
 import java.util.Properties
-import java.util.concurrent.TimeUnit
-
 import Modals.{Employee, User}
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.streams.{KafkaStreams, KeyValue, StreamsBuilder, StreamsConfig}
@@ -30,35 +28,29 @@ object StreamTransformer extends App {
   val originalStreamed: KStream[String,Employee] = builder.stream("test-sqlite-jdbc-employee")
 
   val userStream: KStream[String, User] = originalStreamed.map((key, employee:Employee) =>{
-    val genderPrefix=employeeToPerson(employee)
+    val genderPrefix=genderSpecification(employee)
     val user = User(employee.id, s"$genderPrefix ${employee.firstname} ${employee.lastname}")
     KeyValue.pair(key, user)
   })
 
-  private def employeeToPerson(employee: Employee):String= {
-   val pre:String =employee.gender.toLowerCase match {
-     case male => "Mr."
-     case female => "Ms."
-     case _ => ""
-   }
-
-       pre
+  private def genderSpecification(employee: Employee):String= {
+    val pre:String =employee.gender.toLowerCase match {
+      case "male" => "Mr."
+      case "female" => "Ms."
+      case _ => ""
+    }
+    pre
   }
 
   val jsonSerializer = new CustomJsonSerializer[User]
   val jsonDeserializer= new CustomJsonDeserializer[User]
   val userSerde = Serdes.serdeFrom(jsonSerializer,jsonDeserializer)
 
-
-  userStream.to( "test-sqlite-jdbc-user", Produced.`with`(Serdes.String(), userSerde))
+  userStream.to( "person1", Produced.`with`(Serdes.String(), userSerde))
 
   originalStreamed.print()
 
   val streams: KafkaStreams = new KafkaStreams(builder.build(), config)
   streams.start()
-
-  sys.ShutdownHookThread {
-    streams.close(10, TimeUnit.SECONDS)
-  }
 
 }

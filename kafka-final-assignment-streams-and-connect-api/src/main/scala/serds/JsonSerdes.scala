@@ -2,15 +2,10 @@
 package serds
 
 import java.util
-
 import Modals.Employee
 import org.apache.kafka.common.serialization.{Deserializer, Serde, Serializer}
 
-
-
 class JsonSerdes extends Serde[Employee] {
-
-
 
   def configure(configs: util.Map[String, _], isKey: Boolean): Unit = {
     serializer.configure(configs, isKey)

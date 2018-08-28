@@ -4,7 +4,7 @@
 		module="kafka-final-assignment-streams-and-connect-api_2.12"
 		revision="0.1"
 		status="integration"
-		publication="20180827173652"
+		publication="20180828104918"
 	>
 		<description>
 		kafka-final-assignment-streams-and-connect-api

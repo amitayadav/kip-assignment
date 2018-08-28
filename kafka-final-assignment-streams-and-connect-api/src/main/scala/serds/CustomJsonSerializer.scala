@@ -18,5 +18,6 @@ class CustomJsonSerializer[T >: Null : ClassTag] extends Serializer[T] {
     mapper.writeValueAsBytes(obj)
   }
 
-  override def close(): Unit = {}
+  override def close(): Unit = {
+  }
 }
