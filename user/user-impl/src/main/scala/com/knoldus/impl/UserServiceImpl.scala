@@ -10,43 +10,40 @@ import scala.concurrent.Future
 class UserServiceImpl extends UserService {
 
   override def getUser(id: String): ServiceCall[NotUsed, User] = ServiceCall { _ =>
-    Future.successful(User.userList.find(user => user.id == id)
-      .getOrElse(User("", "")))
+    findUser(id) match {
+      case Some(user) => Future.successful(user)
+      case None => Future.successful(User(s"$id", "user does not found"))
+    }
+  }
+
+  private def findUser(id: String): Option[User] = {
+    User.userList.find(user => user.id == id)
   }
 
   override def addUser: ServiceCall[User, String] = ServiceCall { newUser =>
-    if (isUser(newUser.id) == false) {
-      User.userList += newUser
-      Future.successful("user added :" + User.userList.lastOption)
+    findUser(newUser.id) match {
+      case None => User.userList += newUser
+        Future.successful(s"${newUser.name} added :" + User.userList.lastOption)
+      case Some(user) => Future.successful("user already exists" + user)
     }
-    else
-      Future.successful("user already exists")
-  }
-
-  private def isUser(id: String): Boolean = {
-    if (User.userList.exists(user => user.id == id))
-      true
-    else
-      false
   }
 
   override def updateUser(id: String, name: String): ServiceCall[User, String] = ServiceCall { _ =>
-    if (isUser(id) == true) {
-      val requiredUser = User.userList.find(user => user.id == id).get
-      User.userList -= requiredUser
-      User.userList += User(id, name)
-      Future.successful("user updated")
+    findUser(id) match {
+      case Some(user) => val requiredUser = User.userList.find(user => user.id == id).get
+        User.userList -= requiredUser
+        User.userList += User(id, name)
+        Future.successful("user updated : " + user)
+      case None => Future.successful("user does not exists")
     }
-    else Future.successful("user does not exists")
   }
 
   override def deleteUser(id: String): ServiceCall[NotUsed, String] = ServiceCall { _ =>
-    if (isUser(id) == true) {
-      val requiredUser = User.userList.find(user => user.id == id).get
-      User.userList -= requiredUser
-      Future.successful("user deleted")
+    findUser(id) match {
+      case Some(user) => val requiredUser = User.userList.find(user => user.id == id).get
+        User.userList -= requiredUser
+        Future.successful("user deleted: " + user)
+      case None => Future.successful("user does not exists")
     }
-    else
-      Future.successful("user does not exists")
   }
 }

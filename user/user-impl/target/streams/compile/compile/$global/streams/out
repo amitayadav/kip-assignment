@@ -1,13 +1,6 @@
-[0m[[0m[31merror[0m] [0m[0m/home/knoldus/Documents/assignments/kip-assignment/user/user-impl/src/main/scala/com/knoldus/impl/UserServiceImpl.scala:15:16: overriding method addUser in trait UserService of type => com.lightbend.lagom.scaladsl.api.ServiceCall[com.knoldus.api.User,akka.Done];[0m
-[0m[[0m[31merror[0m] [0m[0m method addUser has incompatible type[0m
-[0m[[0m[31merror[0m] [0m[0m  override def addUser: ServiceCall[User, String] = ServiceCall{_ =>[0m
-[0m[[0m[31merror[0m] [0m[0m               ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/knoldus/Documents/assignments/kip-assignment/user/user-impl/src/main/scala/com/knoldus/impl/UserServiceImpl.scala:20:16: overriding method updateUser in trait UserService of type (id: String)com.lightbend.lagom.scaladsl.api.ServiceCall[com.knoldus.api.User,akka.Done];[0m
-[0m[[0m[31merror[0m] [0m[0m method updateUser has incompatible type[0m
-[0m[[0m[31merror[0m] [0m[0m  override def updateUser(id: String): ServiceCall[User, String] = ServiceCall {_ =>[0m
-[0m[[0m[31merror[0m] [0m[0m               ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/knoldus/Documents/assignments/kip-assignment/user/user-impl/src/main/scala/com/knoldus/impl/UserServiceImpl.scala:31:16: overriding method deleteUser in trait UserService of type (id: String)com.lightbend.lagom.scaladsl.api.ServiceCall[akka.NotUsed,akka.Done];[0m
-[0m[[0m[31merror[0m] [0m[0m method deleteUser has incompatible type[0m
-[0m[[0m[31merror[0m] [0m[0m  override def deleteUser(id: String): ServiceCall[NotUsed, String] = ServiceCall {_ =>[0m
-[0m[[0m[31merror[0m] [0m[0m               ^[0m
-[0m[[0m[31merror[0m] [0m[0mthree errors found[0m
+[0m[[0m[31merror[0m] [0m[0m/home/knoldus/Documents/assignments/kip-assignment/user/user-impl/src/main/scala/com/knoldus/impl/UserServiceImpl.scala:13:22: missing argument list for method fold in class Option[0m
+[0m[[0m[31merror[0m] [0m[0mUnapplied methods are only converted to functions when a function type is expected.[0m
+[0m[[0m[31merror[0m] [0m[0mYou can make this conversion explicit by writing `fold _` or `fold(_)(_)` instead of `fold`.[0m
+[0m[[0m[31merror[0m] [0m[0m    findUser(id).fold()/* match {[0m
+[0m[[0m[31merror[0m] [0m[0m                     ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
