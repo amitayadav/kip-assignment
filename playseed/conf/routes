@@ -1,6 +1,6 @@
 # Routes
 
-GET         /welcome                             controllers.Application.index
+GET         /                                    controllers.Application.index
 GET         /signUp                              controllers.Application.signUpIndex
 POST        /signUp                              controllers.Application.signUp
 GET         /signIn                              controllers.Application.signInIndex

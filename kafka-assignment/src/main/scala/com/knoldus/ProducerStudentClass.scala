@@ -32,24 +32,8 @@ class ProducerStudentClass(topic: String, brokers: String) {
 }
 
 object ProducerStudentClass extends App {
-val topic="testStudent"
-  val producer = new ProducerStudentClass(brokers = "localhost:9092", topic = "testStudent")
+val topic="testStudent1"
+  val producer = new ProducerStudentClass(brokers = "localhost:9092", topic = topic)
   producer.sendMessages(topic)
 
 }
-
-  /*val producer = new KafkaProducer[String, String](props)
-
-  val TOPIC="test"
-
-  for(i<- 1 to 50){
-    val record = new ProducerRecord(TOPIC, "key", s"hello $i")
-    producer.send(record)
-  }
-
-  val record = new ProducerRecord(TOPIC, "key", "the end "+new java.util.Date)
-  producer.send(record)
-
-  producer.close()
-
-}*/

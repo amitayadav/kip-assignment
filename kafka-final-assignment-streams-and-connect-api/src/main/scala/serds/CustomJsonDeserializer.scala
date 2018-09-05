@@ -21,7 +21,7 @@ class CustomJsonDeserializer[T >: Null : ClassTag] extends Deserializer[T] {
   }
 
   override def deserialize(topic: String, data: Array[Byte]): T = data match {
-    case null => null
+//    case null => null
     case _ =>
       try {
         mapper.readValue(data, classTag[T].runtimeClass.asInstanceOf[Class[T]])

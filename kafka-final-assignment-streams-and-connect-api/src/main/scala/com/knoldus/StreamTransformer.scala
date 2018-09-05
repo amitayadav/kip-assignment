@@ -2,11 +2,12 @@
 package com.knoldus
 
 import java.util.Properties
+
 import Modals.{Employee, User}
 import org.apache.kafka.clients.consumer.ConsumerConfig
-import org.apache.kafka.streams.{KafkaStreams, KeyValue, StreamsBuilder, StreamsConfig}
 import org.apache.kafka.common.serialization.Serdes
 import org.apache.kafka.streams.kstream.{KStream, Produced}
+import org.apache.kafka.streams.{KafkaStreams, KeyValue, StreamsBuilder, StreamsConfig}
 import org.apache.log4j.Logger
 import serds.{CustomJsonDeserializer, CustomJsonSerializer, JsonSerdes}
 
@@ -42,13 +43,15 @@ object StreamTransformer extends App {
     pre
   }
 
+
   val jsonSerializer = new CustomJsonSerializer[User]
   val jsonDeserializer= new CustomJsonDeserializer[User]
   val userSerde = Serdes.serdeFrom(jsonSerializer,jsonDeserializer)
 
   userStream.to( "person1", Produced.`with`(Serdes.String(), userSerde))
 
-  originalStreamed.print()
+//    log.info(originalStreamed)
+  userStream.print()
 
   val streams: KafkaStreams = new KafkaStreams(builder.build(), config)
   streams.start()

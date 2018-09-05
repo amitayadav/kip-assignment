@@ -65,20 +65,16 @@ class Application @Inject()(controllerComponent: ControllerComponents,
           optionalUser=>
             optionalUser.fold{
               NotFound("user does not exits")
-            } { loginuser => {
-              if (loginuser.password == data.password && userForm.userForm.) {
+            } { loginuser =>
+              //if (loginuser.password == data.password && userForm.userForm.userType == "normal user") {*/
                 Redirect(routes.Application.normalProfile())
               }
-              else {
-                Ok("invalid username or passsword")
-              }
+
 
               }
             }
-        }
-      }
-    )
-  }
+    )}
+
 
 
   def getUser(username: String) :Action[AnyContent] = Action.async { implicit request =>
