@@ -1,0 +1,4 @@
+[0m[[0m[31merror[0m] [0m[0m/home/knoldus/Documents/assignments/kip-assignment/user/user-api/src/main/scala/com/knoldus/api/UserService.scala:23:17: could not find implicit value for parameter responseSerializer: com.lightbend.lagom.scaladsl.api.deser.MessageSerializer[Option[com.knoldus.api.User], _][0m
+[0m[[0m[31merror[0m] [0m[0m        restCall(Method.GET,"/api/user/:id",getUser _)[0m
+[0m[[0m[31merror[0m] [0m[0m                ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
