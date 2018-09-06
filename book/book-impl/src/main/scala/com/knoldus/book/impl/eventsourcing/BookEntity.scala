@@ -18,15 +18,33 @@ class BookEntity extends PersistentEntity {
     case BookState(_, _) => Actions()
       .onCommand[CreateBookCommand, Done] {
       case (CreateBookCommand(book), ctx, _) ⇒
-        ctx.thenPersist(BookCreated(book) )(_ ⇒ ctx.reply(Done))
+        ctx.thenPersist(BookCreated(book))(_ ⇒ ctx.reply(Done))
     }
       .onReadOnlyCommand[GetBookCommand, Book] {
-       case (GetBookCommand(isbn), ctx, state) =>
-        ctx.reply(state.book.getOrElse(Book("","", "","")))
+      case (GetBookCommand(isbn), ctx, state) =>
+        ctx.reply(state.book.getOrElse(Book("", "", "", "")))
     }
       .onEvent {
         case (BookCreated(book), _) ⇒
           BookState(Some(book), LocalDateTime.now().toString)
+      }
+
+      .onCommand[UpdateBookCommand, Done] {
+      case (UpdateBookCommand(book), ctx, _) =>
+        ctx.thenPersist(BookUpdated(book))(_ ⇒ ctx.reply(Done))
+    }
+      .onEvent {
+        case (_, state) =>
+          state
+      }
+
+      .onCommand[DeleteBookCommand, Done] {
+      case (DeleteBookCommand(book), ctx, _) =>
+        ctx.thenPersist(BookDeleted(book))(_ ⇒ ctx.reply(Done))
+    }
+      .onEvent {
+        case (_, state) =>
+          state
       }
   }
 }

@@ -5,7 +5,7 @@ import play.api.libs.json.{Format, Json}
 
 case class BookState(book: Option[Book], timeStamp: String)
 
-object BookState{
+object BookState {
   implicit val format: Format[BookState] = Json.format
 }
 

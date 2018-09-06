@@ -16,6 +16,20 @@ object BookEvent {
 
 case class BookCreated(book: Book) extends BookEvent
 
-object BookCreated{
+object BookCreated {
   implicit val format: Format[BookCreated] = Json.format
+}
+
+case class BookDeleted(isbn: String) extends BookEvent
+
+object BookDeleted {
+  implicit val format: Format[BookDeleted] = Json.format[BookDeleted]
+
+}
+
+case class BookUpdated(book:Book) extends BookEvent
+
+object BookUpdated {
+  implicit val format: Format[BookUpdated] = Json.format[BookUpdated]
+
 }

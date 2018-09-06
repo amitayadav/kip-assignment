@@ -11,7 +11,12 @@ object BookSerializerRegistry extends JsonSerializerRegistry {
     JsonSerializer[Book],
     JsonSerializer[CreateBookCommand],
     JsonSerializer[GetBookCommand],
+    JsonSerializer[UpdateBookCommand],
+    JsonSerializer[DeleteBookCommand],
+
     JsonSerializer[BookCreated],
+    JsonSerializer[BookUpdated],
+    JsonSerializer[BookDeleted],
     JsonSerializer[BookState]
   )
 }

@@ -9,12 +9,25 @@ trait BookCommand[R] extends ReplyType[R]
 
 case class CreateBookCommand(book: Book) extends BookCommand[Done]
 
-object CreateBookCommand{
+object CreateBookCommand {
   implicit val format: Format[CreateBookCommand] = Json.format
 }
 
 case class GetBookCommand(isbn: String) extends BookCommand[Book]
 
-object GetBookCommand{
+object GetBookCommand {
   implicit val format: Format[GetBookCommand] = Json.format
 }
+
+case class UpdateBookCommand(book: Book) extends BookCommand[Done]
+
+object UpdateBookCommand {
+  implicit val format: Format[UpdateBookCommand] = Json.format
+}
+
+case class DeleteBookCommand(isbn: String) extends BookCommand[Done]
+
+object DeleteBookCommand {
+  implicit val format: Format[DeleteBookCommand] = Json.format
+}
+

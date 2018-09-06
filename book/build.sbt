@@ -8,6 +8,7 @@ scalaVersion := "2.12.6"
 
 val macwire = "com.softwaremill.macwire" %% "macros" % "2.2.5" % "provided"
 val scalaTest = "org.scalatest" %% "scalatest" % "3.0.1" % Test
+val logger = "log4j" % "log4j" % "1.2.17"
 
 lazy val `book` = (project in file("."))
   .aggregate(`book-api`, `book-impl`)
@@ -27,7 +28,8 @@ lazy val `book-impl` = (project in file("book-impl"))
       lagomScaladslKafkaBroker,
       lagomScaladslTestKit,
       macwire,
-      scalaTest
+      scalaTest,
+      logger
     )
   )
   .settings(lagomForkedTestSettings: _*)

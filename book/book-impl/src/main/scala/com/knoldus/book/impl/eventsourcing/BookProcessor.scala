@@ -13,8 +13,10 @@ class BookProcessor(session: CassandraSession, readSide: CassandraReadSide)(impl
   override def buildHandler(): ReadSideProcessor.ReadSideHandler[BookEvent] = {
     readSide.builder[BookEvent]("bookEventOffset")
       .setGlobalPrepare(bookRepository.createTable)
-      .setPrepare(_ => bookRepository.createPreparedStatements)
-      .setEventHandler[BookCreated](e ⇒ bookRepository.storeBook(e.event.book))
+      .setPrepare(_ => bookRepository.preparedStatements())
+      .setEventHandler[BookCreated](e => bookRepository.storeBook(e.event.book))
+      .setEventHandler[BookDeleted](e => bookRepository.deleteBook(e.event.isbn))
+      .setEventHandler[BookUpdated](e => bookRepository.updateBook(e.event.book))
       .build()
   }
 
