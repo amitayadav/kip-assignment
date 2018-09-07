@@ -34,8 +34,8 @@ class BookEntity extends PersistentEntity {
         ctx.thenPersist(BookUpdated(book))(_ ⇒ ctx.reply(Done))
     }
       .onEvent {
-        case (_, state) =>
-          state
+        case (BookCreated(book), _) ⇒
+          BookState(Some(book), LocalDateTime.now().toString)
       }
 
       .onCommand[DeleteBookCommand, Done] {
@@ -43,8 +43,8 @@ class BookEntity extends PersistentEntity {
         ctx.thenPersist(BookDeleted(book))(_ ⇒ ctx.reply(Done))
     }
       .onEvent {
-        case (_, state) =>
-          state
+        case (BookCreated(book), _) ⇒
+          BookState(Some(book), LocalDateTime.now().toString)
       }
   }
 }

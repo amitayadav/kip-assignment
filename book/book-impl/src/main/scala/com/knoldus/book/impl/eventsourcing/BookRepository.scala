@@ -47,7 +47,7 @@ class BookRepository(session: CassandraSession)(implicit ec: ExecutionContext) {
       }.map(_ => session.prepare("DELETE FROM booktable where isbn = ?").map(ps => {
       deleteBook = ps
       Done
-    })).map(_ => session.prepare("UPDATE booktable SET author=?,genre=?,name=? where isbn =?").map(ps => {
+    })).map(_ => session.prepare("UPDATE booktable SET name=?,author=?,genre=? where isbn =?").map(ps => {
       updateBook = ps
       println("Successfully updated")
       Done.getInstance()
@@ -62,7 +62,7 @@ class BookRepository(session: CassandraSession)(implicit ec: ExecutionContext) {
     Future.successful(List(bookBindStatement))
   }
 
-  def getBookByName(name: String): Future[Option[Book]] =
+  /*def getBookByName(name: String): Future[Option[Book]] =
     session.selectOne(s"SELECT * FROM booktable WHERE name = '$name'").map { optRow =>
       optRow.map { row =>
         val isbn = row.getString("isbn")
@@ -83,7 +83,7 @@ class BookRepository(session: CassandraSession)(implicit ec: ExecutionContext) {
         Book(isbn, name, author, genre)
       }
     }
-
+*/
   def deleteBook(isbn: String): Future[List[BoundStatement]] = {
     val bindDeleteBook: BoundStatement = deleteBook.bind()
     bindDeleteBook.setString("isbn", isbn)
@@ -92,9 +92,9 @@ class BookRepository(session: CassandraSession)(implicit ec: ExecutionContext) {
 
   def updateBook(book: Book): Future[List[BoundStatement]] = {
     val bindUpdateBook: BoundStatement = updateBook.bind()
-    bindUpdateBook.setString("author", book.author)
-    bindUpdateBook.setString("genre", book.genre)
     bindUpdateBook.setString("isbn", book.isbn)
+    bindUpdateBook.setString("name", book.name)
+    bindUpdateBook.setString("author", book.author)
     bindUpdateBook.setString("genre", book.genre)
     Future.successful(List(bindUpdateBook))
   }

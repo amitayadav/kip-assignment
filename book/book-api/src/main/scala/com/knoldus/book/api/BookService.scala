@@ -6,13 +6,13 @@ import com.lightbend.lagom.scaladsl.api.{Descriptor, Service, ServiceCall}
 
 trait BookService extends Service {
 
-  def createBook(isbn: String, name: String, author: String, genre: String): ServiceCall[NotUsed, String]
+  def createBook: ServiceCall[Book, Done]
 
-  def getBookByIsbn(isbn: String): ServiceCall[NotUsed, String]
+  def getBookByIsbn(isbn: String): ServiceCall[NotUsed, Book]
 
-  def getBookByName(name: String): ServiceCall[NotUsed, String]
+  def getBookByName(name: String): ServiceCall[NotUsed, Book]
 
-  def getBookByAuthor(author: String): ServiceCall[NotUsed, String]
+  def getBookByAuthor(author: String): ServiceCall[NotUsed, Book]
 
   def updateBook(isbn: String): ServiceCall[Book, Done]
 
@@ -23,7 +23,7 @@ trait BookService extends Service {
 
     named("book_service")
       .withCalls(
-        restCall(Method.POST, "/api/book/createBook/:isbn/:name/:author/:genre", createBook _),
+        restCall(Method.POST, "/api/book/createBook/", createBook _),
         restCall(Method.GET, "/api/book/getBookByIsbn/:isbn", getBookByIsbn _),
         restCall(Method.GET, "/api/book/getBookByName/:name", getBookByName _),
         restCall(Method.GET, "/api/book/getBookByAuthor/:author", getBookByAuthor _),

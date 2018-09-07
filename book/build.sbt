@@ -8,7 +8,8 @@ scalaVersion := "2.12.6"
 
 val macwire = "com.softwaremill.macwire" %% "macros" % "2.2.5" % "provided"
 val scalaTest = "org.scalatest" %% "scalatest" % "3.0.1" % Test
-val logger = "log4j" % "log4j" % "1.2.17"
+val logger = "ch.qos.logback" % "logback-classic" % "1.2.3"
+val scalaLogger ="com.typesafe.scala-logging" %% "scala-logging" % "3.9.0"
 
 lazy val `book` = (project in file("."))
   .aggregate(`book-api`, `book-impl`)
@@ -22,6 +23,7 @@ lazy val `book-api` = (project in file("book-api"))
 
 lazy val `book-impl` = (project in file("book-impl"))
   .enablePlugins(LagomScala)
+  .disablePlugins(LagomLogback)
   .settings(
     libraryDependencies ++= Seq(
       lagomScaladslPersistenceCassandra,
@@ -29,7 +31,8 @@ lazy val `book-impl` = (project in file("book-impl"))
       lagomScaladslTestKit,
       macwire,
       scalaTest,
-      logger
+      logger,
+      scalaLogger
     )
   )
   .settings(lagomForkedTestSettings: _*)
@@ -38,4 +41,5 @@ lazy val `book-impl` = (project in file("book-impl"))
 lagomCassandraEnabled in ThisBuild := false
 lagomUnmanagedServices in ThisBuild := Map("cas_native" -> "http://localhost:9042")
 lagomKafkaEnabled in ThisBuild := false
+
 

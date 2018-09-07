@@ -1,0 +1,3 @@
+14:15:55 INFO  Slf4jLogger {akka.event.slf4j.Slf4jLogger$$anonfun$receive$1 applyOrElse} - Slf4jLogger started
+14:15:57 INFO  ServiceLocatorServer {com.lightbend.lagom.discovery.ServiceLocatorServer start} - Service locator can be reached at http://localhost:9008
+14:15:57 INFO  ServiceLocatorServer {com.lightbend.lagom.discovery.ServiceLocatorServer start} - Service gateway can be reached at http://localhost:9000
